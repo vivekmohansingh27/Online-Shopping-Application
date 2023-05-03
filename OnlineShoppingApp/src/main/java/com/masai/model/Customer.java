@@ -33,7 +33,7 @@ public class Customer {
 	private Cart cart;
 	
 	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "customer")
-	private List<Order> order;
+	private List<Orders> orders;
 	
 	
 	
