@@ -15,14 +15,16 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
 @Data
-public class Order {
+public class Orders {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Integer orderId;
 	private LocalDate orderDate;
 	private String orderStatus;
@@ -30,6 +32,8 @@ public class Order {
 	@ElementCollection
 	@CollectionTable(name="order_product",joinColumns = @JoinColumn(name = "orderId"))
 	private List<Product> product;
+	
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "CID")
