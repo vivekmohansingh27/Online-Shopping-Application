@@ -27,6 +27,7 @@ public class Orders {
 
 	private Integer orderId;
 	private LocalDate orderDate;
+
 	private String orderStatus;
 	
 	@ElementCollection
@@ -42,9 +43,6 @@ public class Orders {
 	@OneToOne
 	@JoinColumn(name="AID")
 	private Address address;
-	
-	
-	
 	
 	
 }
