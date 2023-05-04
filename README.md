@@ -47,6 +47,15 @@ Overall, this Online Shopping Application is a simple and easy-to-use platform t
     7. View cart contents
     8. Remove products from cart
     
+  ###Cart Module 
+  
+  1. Add products to the cart
+  2. Remove products from cart
+  3. Update the quantity of products in the cart
+  4. Remove all products from the cart
+  5. View List of products from the cart 
+    
+    
   ###Login Module
   
     1. Secure user authentication and authorization
