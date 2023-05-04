@@ -21,10 +21,9 @@ public class Product {
 	private String manufacturer;
 	private Integer quantity;
 	
-	@ManyToOne
-	private Cart cart;
 	
 	@ManyToOne
+	@JoinColumn(name="catId")
 	private Category category;
 	
 	
