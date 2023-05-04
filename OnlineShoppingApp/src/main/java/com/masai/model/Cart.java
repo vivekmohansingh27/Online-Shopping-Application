@@ -20,7 +20,7 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer cartId;
 	
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "cart")
+	@OneToMany
 	private List<Product> product;
 	
 	@OneToOne(fetch = FetchType.EAGER)
