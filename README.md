@@ -34,6 +34,7 @@ Overall, this Online Shopping Application is a simple and easy-to-use platform t
     3. Add new products to the database
     4. Update existing products
     5. Remove products from the database
+    
   ###Order Module
   
     1. Create and manage orders
@@ -44,6 +45,7 @@ Overall, this Online Shopping Application is a simple and easy-to-use platform t
     6. Edit cart contents
     7. View cart contents
     8. Remove products from cart
+    
   ###Login Module
   
     1. Secure user authentication and authorization
