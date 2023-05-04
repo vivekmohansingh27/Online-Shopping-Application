@@ -1,4 +1,4 @@
-#ShopKaro
+<h1 align="center">ShopKaro.</h1>
 
 This is an Online Shopping Application developed for ABC Company. The application is designed to allow customers to browse, purchase, and view their order details, and to allow admins to manage the products in the store.
 
