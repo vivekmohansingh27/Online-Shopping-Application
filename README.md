@@ -19,19 +19,23 @@ Overall, this Online Shopping Application is a simple and easy-to-use platform t
   ##Features:-
   
   ###Customer Module
+  
     1. User registration and login
     2. Browse and search products
     3. Add products to cart
     4, Edit cart contents
     5. Check out and purchase products
     6. View order history and details
+    
   ###Product Module
+  
     1. Search for products
     2. View product details and images
     3. Add new products to the database
     4. Update existing products
     5. Remove products from the database
   ###Order Module
+  
     1. Create and manage orders
     2. View order history and details
     3. Generate order confirmation emails
@@ -41,5 +45,6 @@ Overall, this Online Shopping Application is a simple and easy-to-use platform t
     7. View cart contents
     8. Remove products from cart
   ###Login Module
+  
     1. Secure user authentication and authorization
     2. Password reset functionality
