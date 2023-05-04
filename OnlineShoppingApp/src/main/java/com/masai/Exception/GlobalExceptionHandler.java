@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
+
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -64,6 +65,31 @@ public class GlobalExceptionHandler {
 		er.setMessage(e.getMessage());
 		er.setDetails(req.getDescription(false));
 		return new ResponseEntity<MyErrorDetails>(er,HttpStatus.BAD_REQUEST);
+	}
+	@ExceptionHandler(CustomerException.class)
+	public ResponseEntity<MyErrorDetails> customerExceptionHandller(CustomerException ce, WebRequest req ) {
+		MyErrorDetails err = new MyErrorDetails();
+		err.setTimeStamp(LocalDateTime.now());
+		err.setMessage(ce.getMessage());
+		err.setDetails(req.getDescription(false));
+		return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(InputInvalidException.class)
+	public ResponseEntity<MyErrorDetails> inputInvalidExceptionHandller(InputInvalidException ce, WebRequest req ) {
+		MyErrorDetails err = new MyErrorDetails();
+		err.setTimeStamp(LocalDateTime.now());
+		err.setMessage(ce.getMessage());
+		err.setDetails(req.getDescription(false));
+		return new ResponseEntity<>(err,HttpStatus.NOT_ACCEPTABLE);
+	}
+	@ExceptionHandler(AlreadyExistedException.class)
+	public ResponseEntity<MyErrorDetails> alreadyExistedExceptionHandller(AlreadyExistedException ce, WebRequest req ) {
+		MyErrorDetails err = new MyErrorDetails();
+		err.setTimeStamp(LocalDateTime.now());
+		err.setMessage(ce.getMessage());
+		err.setDetails(req.getDescription(false));
+		return new ResponseEntity<>(err,HttpStatus.NOT_ACCEPTABLE);
 	}
 	
 	@ExceptionHandler(ProductException.class)
