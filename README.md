@@ -11,10 +11,10 @@ The application uses POJO classes to represent the entities in the system. The c
 Overall, this Online Shopping Application is a simple and easy-to-use platform that allows customers to shop online and admins to manage the products in the store.
 
 -Tech Stack
-  -Java Core
-  -MySql
-  -Maven
-  -SpringBoot
+  1. Java Core
+  2. MySql
+  3. Maven
+  4. SpringBoot
   
   ***Features:-**
   
