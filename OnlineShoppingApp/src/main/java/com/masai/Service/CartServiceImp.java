@@ -15,175 +15,132 @@ import com.masai.model.Product;
 
 @Service
 public class CartServiceImp implements CartService {
-	
-	
+
 	@Autowired
 	public CartRepository cRepo;
-	
-	
+
 	@Autowired
 	public ProductRepository pRepo;
-	
-	
-	
-	
 
 	@Override
 	public Cart addProductToCart(Integer cartId, Integer productId, Integer quantity) throws CartException {
-		
-		Optional<Cart> opCart= cRepo.findById(cartId);
-		
-		if(opCart.isEmpty()) {
-			 throw new CartException ("Cart does not exists");
+
+		Optional<Cart> opCart = cRepo.findById(cartId);
+
+		if (opCart.isEmpty()) {
+			throw new CartException("Cart does not exists");
 		}
-		
-		Cart cart=opCart.get();
-		
-		
-		Optional<Product> opProduct= pRepo.findById(productId);
-		
-		if(opProduct.isPresent()) {
-			 throw new CartException ("Product with productId "+productId+" is already added in the cart !");
+
+		Cart cart = opCart.get();
+
+		Optional<Product> opProduct = pRepo.findById(productId);
+
+		if (opProduct.isPresent()) {
+			throw new CartException("Product with productId " + productId + " is already added in the cart !");
 		}
-		
-		
-		Product p=opProduct.get();
-		
+
+		Product p = opProduct.get();
+
 		p.setQuantity(quantity);
-		
-		p.setCart(cart);
-		
+
+//		p.setCart(cart);
+//		
 		cart.getProduct().add(p);
-		
+
 		cart.getCustomer().setCart(cart);
-		
-		return  cRepo.save(cart);
-		
-		
-		
-		
-		
+
+		return cRepo.save(cart);
+
 	}
 
-	
-	
-	
-	
 	@Override
 	public Cart removeProductFromCart(Integer cartId, Integer productId) throws CartException {
-		
-		Optional<Cart> opCart= cRepo.findById(cartId);
-		
-	    Cart cart=opCart.get();
-		
-		List<Product> productList=cart.getProduct();
-		
-		
-		for(Product pro : productList) {
-			
-			if(pro.getProductId()==productId) {
-				
+
+		Optional<Cart> opCart = cRepo.findById(cartId);
+
+		Cart cart = opCart.get();
+
+		List<Product> productList = cart.getProduct();
+
+		for (Product pro : productList) {
+
+			if (pro.getProductId() == productId) {
+
 				productList.remove(pro);
 			}
 		}
-		
-		
+
 		cart.setProduct(productList);
-		
-		return  cart;
-		
-		
-		
+
+		return cart;
+
 	}
-	
-	
-	
-	
-	
 
 	@Override
 	public Cart updateProductQantity(Integer cartId, Integer productId, Integer quantity) throws CartException {
-		
-	Optional<Cart> opCart= cRepo.findById(cartId);
-		
-		if(opCart.isEmpty()) {
-			 throw new CartException ("Cart is Empty");
+
+		Optional<Cart> opCart = cRepo.findById(cartId);
+
+		if (opCart.isEmpty()) {
+			throw new CartException("Cart is Empty");
 		}
-		
-		
-         Cart  cart=opCart.get();
-		
-		Optional<Product> opProduct= pRepo.findById(productId);
-		
-		if(opProduct.isEmpty()) {
-			 throw new CartException ("Product with productId "+productId+" does not exists in the cart !");
+
+		Cart cart = opCart.get();
+
+		Optional<Product> opProduct = pRepo.findById(productId);
+
+		if (opProduct.isEmpty()) {
+			throw new CartException("Product with productId " + productId + " does not exists in the cart !");
 		}
-		
-		
-		
-		List<Product> productList=cart.getProduct();
-		
-        for(Product pro : productList) {
-			
-			if(pro.getProductId()==productId) {
-				
+
+		List<Product> productList = cart.getProduct();
+
+		for (Product pro : productList) {
+
+			if (pro.getProductId() == productId) {
+
 				pro.setQuantity(quantity);
 			}
 		}
-		
+
 		cart.setProduct(productList);
-		
-		return  cRepo.save(cart);
-		
+
+		return cRepo.save(cart);
+
 	}
-	
-	
-	
-	
-	
-	
 
 	@Override
 	public Cart removeAllProducts(Integer cartId) throws CartException {
-		
-		Optional<Cart> opCart= cRepo.findById(cartId);
-		if(opCart.isEmpty()) {
-			 throw new CartException ("Cart is Empty");
+
+		Optional<Cart> opCart = cRepo.findById(cartId);
+		if (opCart.isEmpty()) {
+			throw new CartException("Cart is Empty");
 		}
-		
-		
-        Cart cart=opCart.get();
-        
-        List<Product> productList=cart.getProduct();
-        
-        productList=new ArrayList<>();
-        
-        cart.setProduct(productList);
-        
-        return  cRepo.save(cart);
-		
-        
-		
+
+		Cart cart = opCart.get();
+
+		List<Product> productList = cart.getProduct();
+
+		productList = new ArrayList<>();
+
+		cart.setProduct(productList);
+
+		return cRepo.save(cart);
+
 	}
-	
-	
-	
 
 	@Override
-	public Cart viewAllProducts(Integer cartId) throws CartException  {
-		
-		
-		Optional<Cart> opCart= cRepo.findById(cartId);
-		if(opCart.isEmpty()) {
-			 throw new CartException ("Cart is Empty");
+	public Cart viewAllProducts(Integer cartId) throws CartException {
+
+		Optional<Cart> opCart = cRepo.findById(cartId);
+		if (opCart.isEmpty()) {
+			throw new CartException("Cart is Empty");
 		}
-		
-		
-       Cart cart=opCart.get();
-        
-       return cart;
-        
-		
+
+		Cart cart = opCart.get();
+
+		return cart;
+
 	}
 
 }

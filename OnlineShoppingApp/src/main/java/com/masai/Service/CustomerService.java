@@ -8,4 +8,6 @@ public interface CustomerService {
 	public Customer deleteCustomer(Integer id);
 
 	public Customer updateCustomer(Customer customer);
+
+	public Customer getCustomerByID(Integer customerid);
 }

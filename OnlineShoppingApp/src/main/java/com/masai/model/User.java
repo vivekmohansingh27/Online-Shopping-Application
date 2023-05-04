@@ -24,7 +24,7 @@ public class User {
 	@Id
 	@NotNull
 	@NotBlank
-	@Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
+	
 	private String userId;
 	@NotNull
 	@NotBlank

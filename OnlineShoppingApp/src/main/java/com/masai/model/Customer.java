@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -34,36 +35,47 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer customerId;
-	@Size(min = 3,max = 15)
+	@Size(min = 3, max = 15)
 	@NotBlank
 	private String firstName;
-	@Size(min = 3,max = 15)
+	@Size(min = 3, max = 15)
 	@NotBlank
 	private String lastName;
+
+	@NotNull
 	@Pattern(regexp = "[6789][0-9]{9}")
 	@NotBlank
 	private String mobileNumber;
-	
+
+	@NotBlank
+	@Email
+	private String email;
+
+	@NotNull
+	@NotBlank
+	@Size(min = 5, max = 10, message = "password length should be between 5 to 10")
+	private String password;
+
 	@NotNull
 	@JsonIgnore
 	private boolean isActive = true;
-	
-	@OneToOne(cascade = CascadeType.ALL)
+
+	@OneToOne
 	@JoinColumn(name = "AID")
-	@NotNull
-	private	Address address;
-	
+	@JsonIgnore
+	private Address address;
+
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "CAID")
 	private Cart cart;
-	
-	@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
+
+	@JsonIgnore
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private User user;
-	
-	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "customer")
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "customer")
 	private List<Orders> orders;
-	
-	
-	
-	
+
 }
