@@ -1,8 +1,6 @@
 package com.masai.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -37,4 +35,5 @@ public class User {
 	
 	@OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
 	private Customer customer;
+	
 }
