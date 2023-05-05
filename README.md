@@ -14,7 +14,9 @@ Overall, this Online Shopping Application is a simple and easy-to-use platform t
 
 
 <br/>
+
 ![ER](https://user-images.githubusercontent.com/71522419/236449459-744a5f97-f063-4a62-810e-d334d65cebde.png)
+
 -Tech Stack
   1. Java Core
   2. MySql
