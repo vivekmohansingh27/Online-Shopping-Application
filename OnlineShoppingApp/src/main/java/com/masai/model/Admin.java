@@ -10,6 +10,7 @@ import lombok.Data;
 
 @Entity
 @Data
+
 public class Admin {
 
     

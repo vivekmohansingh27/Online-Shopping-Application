@@ -30,14 +30,15 @@ public class CustomerServiceImpl implements CustomerService {
 		if (customer2.isPresent())
 			throw new AlreadyExistedException("Customer already exists ");
 
-		// customer=customer2.get();
 
+		
+		
 		Customer savedCustomer = customerRepo.save(customer);
 
 		Cart cart = new Cart();
-
 		cart.setCartId(savedCustomer.getCustomerId());
-		cart.setCustomer(customer);
+		cart.setCustomer(savedCustomer);
+
 		cart.setProduct(null);
 
 		cartRepo.save(cart);
