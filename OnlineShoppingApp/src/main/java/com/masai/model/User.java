@@ -8,6 +8,7 @@ import jakarta.persistence.CascadeType;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -36,7 +37,7 @@ public class User {
 	private String type;
 
 	@JsonIgnore
-	@OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Customer customer;
 
 
