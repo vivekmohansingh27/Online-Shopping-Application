@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.masai.Exception.ProductException;
 import com.masai.Repository.CategoryRepository;
 import com.masai.Repository.ProductRepository;
+import com.masai.model.Category;
 import com.masai.model.Product;
 
 @Service
@@ -31,8 +32,10 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public Product addProduct(Product product) throws ProductException {
-		if(product==null) {
-			throw new ProductException("No Product is passed");
+		Optional<Product> prod = proRepo.findById(product.getProductId());
+		
+		if(prod.isPresent()) {
+			throw new ProductException(" Product is Already there");
 		}
 		 
 		return proRepo.save(product);
@@ -42,7 +45,7 @@ public class ProductServiceImpl implements ProductService{
 	public Product updateProduct(Product product) throws ProductException {
 		
 		Optional<Product> prod = proRepo.findById(product.getProductId());
-		if(prod.isEmpty()) {
+		if(prod.isPresent()==false) {
 			throw new ProductException("No Product is present in the List");
 		}
 		
@@ -63,7 +66,7 @@ public class ProductServiceImpl implements ProductService{
 	public Product getProductById(Integer id) throws ProductException {
 		
 		Optional<Product> prod = proRepo.findById(id);
-		if(prod.isEmpty()) {
+		if(prod.isPresent()==false) {
 			throw new ProductException("No Product is present in the List");
 		}
 		return prod.get();
@@ -73,7 +76,7 @@ public class ProductServiceImpl implements ProductService{
 	public Product deleteProductById(Integer id) throws ProductException {
 		
 		Optional<Product> prod = proRepo.findById(id);
-		if(prod.isEmpty()) {
+		if(prod.isPresent()==false) {
 			throw new ProductException("No Product is present in the List");
 		}
 		Product p = prod.get();
@@ -100,6 +103,28 @@ public class ProductServiceImpl implements ProductService{
 		}
 		
 		return proList;
+	}
+	
+	@Override
+	public Category addCategory(Category category) throws ProductException {
+		Optional<Category> cat = catRepo.findById(category.getCatId());
+		
+		if(cat.isPresent()) {
+			throw new ProductException("category is Already present");
+		}
+		 
+		return catRepo.save(category);
+	}
+	
+	@Override
+	public Category deleteCategory(Integer catId) throws ProductException {
+		Optional<Category> cat = catRepo.findById(catId);
+		
+		if(cat.isPresent()==false) {
+			throw new ProductException("category is not present");
+		}
+		catRepo.deleteById(catId);
+		return cat.get();
 	}
 
 	
