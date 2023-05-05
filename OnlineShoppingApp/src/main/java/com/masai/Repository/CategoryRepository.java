@@ -12,5 +12,8 @@ import com.masai.model.Product;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Integer>{
 
-	public List<Product> findByCatName(String catName);
+	public List<Category> findByCatName(CategoryEnum catName);
+
+
+	
 }

@@ -50,11 +50,13 @@ public class ProductController {
 		return new ResponseEntity<>(ps.updateProduct(product ,key),HttpStatus.OK);
 	}
 	
+
 	@GetMapping("/getProductsByName/{name}")
 	public ResponseEntity<List<Product>> getAllProductsByCategoryName(@PathVariable("name") String name){
 		
 		return new ResponseEntity<>(ps.getAllProductByCategoryName(name),HttpStatus.OK);
 	}
+
 	
 	@DeleteMapping("/products/{id}")
 	public ResponseEntity<Product> deleteProductById(@PathVariable("id") Integer id  ,@RequestParam("sessionKey") String key){

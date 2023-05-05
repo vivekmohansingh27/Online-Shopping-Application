@@ -59,6 +59,7 @@ public class ProductServiceImpl implements ProductService{
 		if(prod.isPresent()) {
 			throw new ProductException(" Product is Already there");
 		}
+		
 		 
 		return proRepo.save(product);
 	}
@@ -141,6 +142,7 @@ public class ProductServiceImpl implements ProductService{
 //		
 //		return proList;
 //	}
+
 	
 	
 	
@@ -154,6 +156,7 @@ public class ProductServiceImpl implements ProductService{
 		
 		return proList;
 	}
+
 	
 	
 	
