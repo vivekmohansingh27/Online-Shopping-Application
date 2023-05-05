@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.masai.Exception.CartException;
 import com.masai.Exception.OrderException;
 import com.masai.Service.OrderService;
 import com.masai.Service.OrderServiceImpl;
@@ -26,7 +27,7 @@ public class OrderController {
 	private OrderService orService;
 	
 	@PostMapping("/orders/{key}")
-	public ResponseEntity<Orders> addOrderController (@RequestBody Orders order,@PathVariable String key) throws OrderException{
+	public ResponseEntity<Orders> addOrderController (@RequestBody Orders order,@PathVariable String key) throws OrderException, CartException{
 		
 		Orders addOr= orService.addOrder(order,key);
 		
@@ -34,18 +35,18 @@ public class OrderController {
 		
 	}
 	
-	@PutMapping("/orders")
-	public ResponseEntity<Orders> updateOrderController (@RequestBody Orders orde) throws OrderException{
+	@PutMapping("/orders/{key}")
+	public ResponseEntity<Orders> updateOrderController (@RequestBody Orders order,@PathVariable String key) throws OrderException{
 		
-		Orders updateOr= orService.updateOrder(orde);
+		Orders updateOr= orService.updateOrder(order,key);
 		return new ResponseEntity<Orders>(updateOr, HttpStatus.OK);
 		
 	}
 	
-	@DeleteMapping("/orders/{orderId}")
-	public ResponseEntity<Orders> deleteOrderController (@PathVariable ("orderId") Integer orderId) throws OrderException{
+	@DeleteMapping("/orders/{orderId}/{key}")
+	public ResponseEntity<Orders> deleteOrderController (@PathVariable ("orderId") Integer orderId ,@PathVariable String key) throws OrderException{
 		
-		Orders deleteOr= orService.removeOrder(orderId);
+		Orders deleteOr= orService.removeOrder(orderId,key);
 		
 		return new ResponseEntity<Orders>(deleteOr,HttpStatus.OK);
 	}
