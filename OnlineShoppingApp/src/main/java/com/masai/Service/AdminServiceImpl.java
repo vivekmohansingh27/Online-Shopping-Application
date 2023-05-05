@@ -1,8 +1,12 @@
+package com.masai.Service;
+
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.masai.Repository.ProductRepository;
 import com.masai.model.Product;
 
 @Service
@@ -17,8 +21,14 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Product getProductById(Long id) {
-        return productRepository.findById(id).orElse(null);
+    public Product getProductById(Integer id) {
+       Optional<Product> product =  productRepository.findById(id);
+       
+       if(product.isPresent()) {
+    	   return product.get();
+       }else {
+    	   throw new IllegalArgumentException("Product is not avalible with this id"+id);
+       }
     }
 
     @Override
@@ -32,7 +42,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void removeProduct(Long id) {
+    public void removeProduct(Integer id) {
         productRepository.deleteById(id);
     }
 }
