@@ -25,10 +25,10 @@ public class OrderController {
 	@Autowired
 	private OrderService orService;
 	
-	@PostMapping("/orders")
-	public ResponseEntity<Orders> addOrderController (@RequestBody Orders order) throws OrderException{
+	@PostMapping("/orders/{key}")
+	public ResponseEntity<Orders> addOrderController (@RequestBody Orders order,@PathVariable String key) throws OrderException{
 		
-		Orders addOr= orService.addOrder(order);
+		Orders addOr= orService.addOrder(order,key);
 		
 		return new ResponseEntity<Orders>(addOr, HttpStatus.CREATED);
 		
