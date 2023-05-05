@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -45,10 +46,12 @@ public class Customer {
 	@NotNull
 	@Pattern(regexp = "[6789][0-9]{9}")
 	@NotBlank
+	@Column(unique = true,nullable = false)
 	private String mobileNumber;
 
 	@NotBlank
 	@Email
+	@Column(unique = true,nullable = false)
 	private String email;
 
 	@NotNull
@@ -60,9 +63,8 @@ public class Customer {
 	@JsonIgnore
 	private boolean isActive = true;
 
-	@OneToOne
-	@JoinColumn(name = "AID")
-	@JsonIgnore
+	@OneToOne(mappedBy = "customer",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name = "aid")
 	private Address address;
 
 	@JsonIgnore
@@ -70,9 +72,7 @@ public class Customer {
 	@JoinColumn(name = "CAID")
 	private Cart cart;
 
-	@JsonIgnore
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	private User user;
+	
 
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "customer")

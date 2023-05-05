@@ -1,5 +1,7 @@
 package com.masai.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.Service.CustomerService;
+import com.masai.model.Address;
 import com.masai.model.Customer;
 
 import jakarta.validation.Valid;
@@ -23,7 +26,10 @@ public class CustomerController {
 
 	@PostMapping("/customerSave")
 	public ResponseEntity<Customer> saveCustmerHandller(@Valid @RequestBody Customer customer) {
-		Customer customer2 = customerService.saveCustomer(customer);
+		Address address = customer.getAddress();
+		Customer customer3 = customer;
+		customer3.setAddress(address);
+		Customer customer2 = customerService.saveCustomer(customer3);
 		return new ResponseEntity<>(customer2, HttpStatus.ACCEPTED);
 	}
 
@@ -43,6 +49,11 @@ public class CustomerController {
 	public ResponseEntity<Customer> getCustmerByIdHandller(@Valid @PathVariable Integer id) {
 		Customer customer2 = customerService.getCustomerByID(id);
 		return new ResponseEntity<>(customer2, HttpStatus.OK);
+	}
+	@GetMapping("/customers")
+	public ResponseEntity<List<Customer>> viewAllCustomersHandller() {
+		List<Customer> customers = customerService.getAllCustomer();
+		return new ResponseEntity<>(customers, HttpStatus.OK);
 	}
 
 }

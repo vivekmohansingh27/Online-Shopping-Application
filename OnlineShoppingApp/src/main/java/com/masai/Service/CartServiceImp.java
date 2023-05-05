@@ -8,9 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.masai.Exception.CartException;
+import com.masai.Exception.UserException;
 import com.masai.Repository.CartRepository;
+import com.masai.Repository.CustomerRepo;
 import com.masai.Repository.ProductRepository;
+import com.masai.Repository.UserSession;
 import com.masai.model.Cart;
+import com.masai.model.CurrentUserSession;
 import com.masai.model.Product;
 
 @Service
@@ -21,22 +25,44 @@ public class CartServiceImp implements CartService {
 
 	@Autowired
 	public ProductRepository pRepo;
+	
+	@Autowired
+	public UserSession userRepo;
+
+	
+	@Autowired
+	public CustomerRepo cusRepo;
+
+	
+	
+	
+	
+	
 
 	@Override
-	public Cart addProductToCart(Integer cartId, Integer productId, Integer quantity) throws CartException {
+	public Cart addProductToCart(Integer cartId, Integer productId) throws CartException {
 
 		
-		
+
 		Optional<Cart> opCart = cRepo.findById(cartId);
 
 		if (opCart.isEmpty()) {
 			throw new CartException("Cart does not exists");
 		}
 		
+	
+
+     	Cart cart = opCart.get();
+
 		
+	    Optional<CurrentUserSession >optionalSession=userRepo.findById( cart.getCustomer().getCustomerId());	
+	    
+	    if (!optionalSession.isPresent()) {
+			throw new UserException("Login first !");
+		}
+			         
 
-		Cart cart = opCart.get();
-
+	    
 		Optional<Product> opProduct = pRepo.findById(productId);
 
 		if (opProduct.isEmpty()) {
@@ -46,11 +72,12 @@ public class CartServiceImp implements CartService {
 	
 		Product p = opProduct.get();
 		
+		
 		if(cart.getProduct().contains(p)) {
 			throw new CartException("Product with productId " + productId + " is already present in the Cart");
 		}
 
-		p.setQuantity(quantity);
+		p.setQuantity(1);
 
 //		p.setCart(cart);
 //		
@@ -61,6 +88,12 @@ public class CartServiceImp implements CartService {
 		return cRepo.save(cart);
 
 	}
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public Cart removeProductFromCart(Integer cartId, Integer productId) throws CartException {
@@ -68,7 +101,16 @@ public class CartServiceImp implements CartService {
 		Optional<Cart> opCart = cRepo.findById(cartId);
 
 		Cart cart = opCart.get();
-
+		
+		 Optional<CurrentUserSession >optionalSession=userRepo.findById( cart.getCustomer().getCustomerId());	
+		    
+		    if (!optionalSession.isPresent()) {
+				throw new UserException("Login first !");
+			}
+		    
+		    
+        boolean flag=false;
+        
 		List<Product> productList = cart.getProduct();
 
 		for (Product pro : productList) {
@@ -76,7 +118,13 @@ public class CartServiceImp implements CartService {
 			if (pro.getProductId() == productId) {
 
 				productList.remove(pro);
+				
+				flag=true;
 			}
+		}
+		
+		if(flag==false) {
+			throw new CartException("Product does not exists with productId "+productId+ " !");
 		}
 
 		cart.setProduct(productList);
@@ -84,6 +132,8 @@ public class CartServiceImp implements CartService {
 		return cart;
 
 	}
+	
+	
 
 	@Override
 	public Cart updateProductQantity(Integer cartId, Integer productId, Integer quantity) throws CartException {
@@ -95,6 +145,13 @@ public class CartServiceImp implements CartService {
 		}
 
 		Cart cart = opCart.get();
+		
+		 Optional<CurrentUserSession >optionalSession=userRepo.findById( cart.getCustomer().getCustomerId());	
+		    
+		    if (!optionalSession.isPresent()) {
+				throw new UserException("Login first !");
+			}
+		    
 
 		Optional<Product> opProduct = pRepo.findById(productId);
 
@@ -108,7 +165,7 @@ public class CartServiceImp implements CartService {
 
 			if (pro.getProductId() == productId) {
 
-				pro.setQuantity(quantity);
+				pro.setQuantity(pro.getQuantity()+quantity);
 			}
 		}
 
@@ -117,6 +174,11 @@ public class CartServiceImp implements CartService {
 		return cRepo.save(cart);
 
 	}
+	
+	
+	
+	
+	
 
 	@Override
 	public Cart removeAllProducts(Integer cartId) throws CartException {
@@ -127,6 +189,12 @@ public class CartServiceImp implements CartService {
 		}
 
 		Cart cart = opCart.get();
+		
+		 Optional<CurrentUserSession >optionalSession=userRepo.findById( cart.getCustomer().getCustomerId());	
+		    
+		    if (!optionalSession.isPresent()) {
+				throw new UserException("Login first !");
+			}
 
 		List<Product> productList = cart.getProduct();
 
@@ -138,8 +206,12 @@ public class CartServiceImp implements CartService {
 
 	}
 
+	
+	
+	
+	
 	@Override
-	public Cart viewAllProducts(Integer cartId) throws CartException {
+	public List<Product> viewAllProducts(Integer cartId) throws CartException {
 
 		Optional<Cart> opCart = cRepo.findById(cartId);
 		if (opCart.isEmpty()) {
@@ -147,8 +219,14 @@ public class CartServiceImp implements CartService {
 		}
 
 		Cart cart = opCart.get();
+		
+		 Optional<CurrentUserSession >optionalSession=userRepo.findById( cart.getCustomer().getCustomerId());	
+		    
+		    if (!optionalSession.isPresent()) {
+				throw new UserException("Login first !");
+			}
 
-		return cart;
+		return cart.getProduct();
 
 	}
 

@@ -17,8 +17,9 @@ import lombok.Data;
 public class Cart {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer cartId;
+	
 	
 	@OneToMany
 	private List<Product> product;

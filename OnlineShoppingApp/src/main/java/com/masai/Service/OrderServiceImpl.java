@@ -143,11 +143,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<Orders> AllOrderByLocation(String location) throws OrderException {
 
-//		List<Orders> allOrderLocation= orderRepository.findByOrderByCity(location);
-//		
-//		if(allOrderLocation.isEmpty()) {
-//			throw new OrderException("There is No Order on this location : "+ location);
-//		}
+
 
 		return null;
 	}
