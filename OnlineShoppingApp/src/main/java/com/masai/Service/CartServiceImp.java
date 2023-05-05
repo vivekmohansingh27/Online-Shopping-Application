@@ -25,21 +25,30 @@ public class CartServiceImp implements CartService {
 	@Override
 	public Cart addProductToCart(Integer cartId, Integer productId, Integer quantity) throws CartException {
 
+		
+		
 		Optional<Cart> opCart = cRepo.findById(cartId);
 
 		if (opCart.isEmpty()) {
 			throw new CartException("Cart does not exists");
 		}
+		
+		
 
 		Cart cart = opCart.get();
 
 		Optional<Product> opProduct = pRepo.findById(productId);
 
-		if (opProduct.isPresent()) {
-			throw new CartException("Product with productId " + productId + " is already added in the cart !");
+		if (opProduct.isEmpty()) {
+			throw new CartException("Product with productId " + productId + " does not exixts !");
 		}
-
+		
+	
 		Product p = opProduct.get();
+		
+		if(cart.getProduct().contains(p)) {
+			throw new CartException("Product with productId " + productId + " is already present in the Cart");
+		}
 
 		p.setQuantity(quantity);
 
