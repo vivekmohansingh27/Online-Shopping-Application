@@ -1,12 +1,14 @@
 package com.masai.Service;
 
 import java.util.Optional;
+import com.masai.model.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.masai.Exception.AlreadyExistedException;
 import com.masai.Exception.InputInvalidException;
+import com.masai.Repository.CartRepository;
 import com.masai.Repository.CustomerRepo;
 import com.masai.model.Customer;
 
@@ -14,6 +16,9 @@ import com.masai.model.Customer;
 public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private CustomerRepo customerRepo;
+	
+	@Autowired
+	private CartRepository cartRepo;
 
 	@Override
 	public Customer saveCustomer(Customer customer) {
@@ -22,10 +27,26 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		Optional<Customer> customer2 = customerRepo.findById(customer.getCustomerId());
 		if (customer2.isPresent())
-			throw new AlreadyExistedException("Customer existed with this mobile no ");
+			throw new AlreadyExistedException("Customer already exists ");
 
-		return customerRepo.save(customer);
-//		return customer;
+		//customer=customer2.get(); 
+		
+		Customer savedCustomer= customerRepo.save(customer);
+		
+		
+		 Cart cart= new Cart();
+	       
+         cart.setCartId(savedCustomer.getCustomerId());
+	     cart.setCustomer(customer);
+	     cart.setProduct(null);
+	       
+         cartRepo.save(cart);
+         
+         savedCustomer.setCart(cart);
+	      
+         return customerRepo.save(savedCustomer);	
+           
+           
 	}
 
 	@Override

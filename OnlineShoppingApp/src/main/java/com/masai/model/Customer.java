@@ -66,7 +66,7 @@ public class Customer {
 	private Address address;
 
 	@JsonIgnore
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "CAID")
 	private Cart cart;
 

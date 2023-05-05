@@ -2,6 +2,8 @@ package com.masai.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -23,7 +25,7 @@ public class Category {
 	@Enumerated(EnumType.STRING)
 	private CategoryEnum catName;
 	
-	
+	@JsonIgnore
 	@OneToMany(cascade =CascadeType.ALL,mappedBy = "category")
 	private List<Product> product;
 
