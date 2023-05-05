@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
 				throw new UserException("Please Provide valid password");
 			}
 		}else if (user.getType().equalsIgnoreCase("admin")) {
-			Admin admin = adminRepo.findByEmailId(user.getUserId());
+			Admin admin = adminRepo.findByEmail(user.getUserId());
 			
 			if(admin == null) {
 				throw new AdminException("Email id does not existed");
