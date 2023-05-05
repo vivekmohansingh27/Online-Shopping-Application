@@ -37,6 +37,7 @@ public class ProductServiceImpl implements ProductService{
 		if(prod.isPresent()) {
 			throw new ProductException(" Product is Already there");
 		}
+		
 		 
 		return proRepo.save(product);
 	}
@@ -94,16 +95,16 @@ public class ProductServiceImpl implements ProductService{
 //		
 //		return proList;
 //	}
-	@Override
-	public List<Product> getAllProductByCategoryName(String name) throws ProductException {
-		String catName = name.toUpperCase();
-		List<Product> proList = catRepo.findByCatName(catName);
-		if(proList.isEmpty()) {
-			throw new ProductException("No Product is present in the category");
-		}
-		
-		return proList;
-	}
+//	@Override
+//	public List<Product> getAllProductByCategoryName(String name) throws ProductException {
+//		String catName = name.toUpperCase();
+//		List<Product> proList = catRepo.findByCatName(catName);
+//		if(proList.isEmpty()) {
+//			throw new ProductException("No Product is present in the category");
+//		}
+//		
+//		return proList;
+//	}
 	
 	@Override
 	public Category addCategory(Category category) throws ProductException {

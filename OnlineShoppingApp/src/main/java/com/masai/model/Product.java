@@ -1,6 +1,8 @@
 package com.masai.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,7 +24,7 @@ public class Product {
 	private Integer quantity;
 	
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
 	@JoinColumn(name="catId")
 	private Category category;
 
