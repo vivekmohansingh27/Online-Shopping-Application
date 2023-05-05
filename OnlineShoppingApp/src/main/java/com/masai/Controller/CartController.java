@@ -35,10 +35,10 @@ public class CartController {
 	
 	@PostMapping("carts/addProduct")
 	public ResponseEntity<Cart> addProductToCart(@RequestParam("cartId") Integer cartId, 
-			                                     @RequestParam("productId") Integer productId,
-			                                     @RequestParam("quantity")Integer quantity) throws CartException {
-		
-	     Cart cart=cartService.addProductToCart(cartId, productId, quantity);
+			                                     @RequestParam("productId") Integer productId
+			                                     ) throws CartException {
+			                                     
+	     Cart cart=cartService.addProductToCart(cartId, productId);
 	     
 	     
 	     ResponseEntity<Cart> re=new ResponseEntity<>(cart , HttpStatus.CREATED);
@@ -130,7 +130,7 @@ public class CartController {
 	@GetMapping("carts/viewProducts")
 	public ResponseEntity<List<Product>>  viewAllProducts(@RequestParam("cartId") Integer cartId) throws CartException {
 		
-		List <Product> productList =(List<Product>) cartService.viewAllProducts(cartId);
+		List <Product> productList = cartService.viewAllProducts(cartId);
 		
 		 ResponseEntity<List<Product>> re=new ResponseEntity<>(productList , HttpStatus.CREATED);
 		 
