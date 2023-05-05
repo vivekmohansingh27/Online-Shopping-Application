@@ -7,13 +7,18 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.masai.Exception.CartException;
 import com.masai.Exception.OrderException;
+import com.masai.Exception.UserException;
 import com.masai.Repository.CartRepository;
 import com.masai.Repository.CustomerRepo;
 import com.masai.Repository.OrderRepository;
 import com.masai.Repository.UserSession;
+import com.masai.model.Address;
 import com.masai.model.CurrentUserSession;
+import com.masai.model.Customer;
 import com.masai.model.Orders;
+import com.masai.model.Product;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -31,17 +36,50 @@ public class OrderServiceImpl implements OrderService {
 	private CartRepository cartRepo;
 
 	@Override
-	public Orders addOrder(Orders order,String key) throws OrderException {
+	public Orders addOrder(Orders order,String key) throws OrderException, CartException {
 
 		CurrentUserSession user = userRepo.findByUuid(key);
-
 		
-
-		return orderRepository.save(order);
+		if(user==null) {
+			throw new UserException("Please Login first");
+		}
+		
+		Integer id = user.getUserId();
+		
+		Optional<Customer> cs = customerRepo.findById(id);
+		
+		Customer customer = cs.get();
+		
+		
+		
+		Address address = customer.getAddress();
+		
+		List<Product> productList = customer.getCart().getProduct();
+		if(productList.isEmpty()) {
+			throw new CartException("Product List is empty");
+		}
+		Orders orders  = new Orders();
+		
+		orders.setAddress(address);
+		orders.setCustomer(customer);
+		orders.setOrderDate(LocalDate.now());
+		orders.setOrderStatus("confirmed");
+		orders.setProduct(productList);
+		
+		return orderRepository.save(orders);
+		
 	}
 
 	@Override
-	public Orders updateOrder(Orders order) throws OrderException {
+	public Orders updateOrder(Orders order,String key) throws OrderException {
+		
+		CurrentUserSession user = userRepo.findByUuid(key);
+		
+		if(user==null) {
+			throw new UserException("Please Login first");
+		}
+		
+		
 		Optional<Orders> or = orderRepository.findById(order.getOrderId());
 
 		if (or.isPresent()) {
@@ -56,8 +94,13 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Orders removeOrder(Integer orderId) throws OrderException {
+	public Orders removeOrder(Integer orderId,String key) throws OrderException {
 
+		CurrentUserSession user = userRepo.findByUuid(key);
+		
+		if(user==null) {
+			throw new UserException("Please Login first");
+		}
 		Orders or = orderRepository.findById(orderId)
 				.orElseThrow(() -> new OrderException("Order does not exist with id : " + orderId));
 
