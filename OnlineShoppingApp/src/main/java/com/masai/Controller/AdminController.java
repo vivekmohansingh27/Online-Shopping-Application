@@ -7,14 +7,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.masai.Exception.AdminException;
 import com.masai.Service.AdminService;
+import com.masai.Service.ProductService;
+import com.masai.Service.ProductServiceImpl;
+import com.masai.model.Category;
 import com.masai.model.Product;
 
 
@@ -25,50 +31,52 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
     
+    @Autowired
+    private ProductService proService;
+    
     @GetMapping("/products")
-    public String viewProductList(Model model) throws AdminException {
-        List<Product> productList = adminService.getProductList();
-        model.addAttribute("productList", productList);
-        return "product-list";
-    }
+	public ResponseEntity<List<Product>> getAllProducts(){
+		
+		return new ResponseEntity<>(proService.viewAllProduct(),HttpStatus.OK);
+	}
     
     
     @GetMapping("/products/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable("id") Integer id) throws AdminException{
-    	Product product = adminService.getProductById(id);
-    	
-    	return new ResponseEntity<>(product, HttpStatus.FOUND);
-    }
+	public ResponseEntity<Product> getProductById(@PathVariable("id") Integer id){
+		
+		return new ResponseEntity<>(proService.getProductById(id),HttpStatus.OK);
+	}
 
     
-    @GetMapping("/add-product")
-    public String showAddProductForm(Model model) throws AdminException{
-        model.addAttribute("product", new Product());
-        return "add-product";
-    }
+    @PostMapping("/products")
+	public ResponseEntity<Product> addProduct(@RequestBody Product product){
+		
+		return new ResponseEntity<>(proService.addProduct(product),HttpStatus.OK);
+	}
     
-    @PostMapping("/add-product")
-    public String addProduct(@ModelAttribute("product") Product product) throws AdminException{
-        adminService.addProduct(product);
-        return "redirect:/admin/products";
-    }
     
-    @GetMapping("/edit-product/{id}")
-    public String showEditProductForm(@PathVariable("id") Integer id, Model model) throws AdminException{
-        Product product = adminService.getProductById(id);
-        model.addAttribute("product", product);
-        return "edit-product";
-    }
     
-    @PostMapping("/edit-product")
-    public String editProduct(@ModelAttribute("product") Product product)throws AdminException {
-        adminService.updateProduct(product);
-        return "redirect:/admin/products";
-    }
+    @PutMapping("/products")
+	public ResponseEntity<Product> updateProduct(@RequestBody Product product){
+		
+		return new ResponseEntity<>(proService.updateProduct(product),HttpStatus.OK);
+	}
     
-    @GetMapping("/delete-product/{id}")
-    public String deleteProduct(@PathVariable("id") Integer id) throws AdminException {
-        adminService.removeProduct(id);
-        return "redirect:/admin/products";
-    }
+    @DeleteMapping("/products/{id}")
+	public ResponseEntity<Product> deleteProductById(@PathVariable("id") Integer id){
+		
+		return new ResponseEntity<>(proService.deleteProductById(id),HttpStatus.OK);
+	}
+    
+    @PostMapping("/category")
+	public ResponseEntity<Category> addCategory(@RequestBody Category category){
+		
+		return new ResponseEntity<>(proService.addCategory(category),HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/category/{id}")
+	public ResponseEntity<Category> deleteCategoryById(@PathVariable("id") Integer id){
+		
+		return new ResponseEntity<>(proService.deleteCategory(id),HttpStatus.OK);
+	}
 }
