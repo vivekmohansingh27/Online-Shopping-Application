@@ -25,10 +25,8 @@ public class Product {
 	@ManyToOne
 	@JoinColumn(name="catId")
 	private Category category;
-	
-	
-	
-	
+
+
 	
 	
 }
