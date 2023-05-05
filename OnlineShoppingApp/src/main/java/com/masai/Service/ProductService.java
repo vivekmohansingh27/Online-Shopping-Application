@@ -3,6 +3,7 @@ package com.masai.Service;
 import java.util.List;
 
 import com.masai.Exception.ProductException;
+import com.masai.model.Category;
 import com.masai.model.Product;
 
 public interface ProductService {
@@ -18,4 +19,8 @@ public interface ProductService {
 	public Product deleteProductById(Integer id) throws ProductException;
 
 	public List<Product> getAllProductByCategoryName(String name)throws ProductException;
+	
+	public Category deleteCategory(Integer catId) throws ProductException;
+	
+	public Category addCategory(Category category) throws ProductException;
 }

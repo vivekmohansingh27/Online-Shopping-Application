@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.Service.ProductService;
+import com.masai.model.Category;
 import com.masai.model.Product;
 
 @RestController
@@ -56,5 +57,17 @@ public class ProductController {
 	public ResponseEntity<Product> deleteProductById(@PathVariable("id") Integer id){
 		
 		return new ResponseEntity<>(ps.deleteProductById(id),HttpStatus.OK);
+	}
+	
+	@PostMapping("/category")
+	public ResponseEntity<Category> addCategory(@RequestBody Category category){
+		
+		return new ResponseEntity<>(ps.addCategory(category),HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/category/{id}")
+	public ResponseEntity<Category> deleteCategoryById(@PathVariable("id") Integer id){
+		
+		return new ResponseEntity<>(ps.deleteCategory(id),HttpStatus.OK);
 	}
 }

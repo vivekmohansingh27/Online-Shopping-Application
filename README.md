@@ -6,10 +6,15 @@ The application consists of several modules including Login, Customer, Product, 
 
 The application is built using Spring Boot and follows the Model-View-Controller (MVC) architecture. It uses a relational database to store and retrieve data.
 
-##Class Design
+<h1>Class Design</h1>
 The application uses POJO classes to represent the entities in the system. The classes include Customer, Admin, Product, Order, and Cart. The service layer is designed using interfaces, such as CustomerService and AdminService, to provide separation between the business logic and the controller layer.
 
 Overall, this Online Shopping Application is a simple and easy-to-use platform that allows customers to shop online and admins to manage the products in the store.
+-ER
+
+
+<br/>
+
 
 -Tech Stack
   1. Java Core

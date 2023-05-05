@@ -43,6 +43,5 @@ public class Orders {
 	@OneToOne
 	@JoinColumn(name="AID")
 	private Address address;
-	
-	
+
 }

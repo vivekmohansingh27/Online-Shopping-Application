@@ -8,7 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.masai.Exception.OrderException;
+import com.masai.Repository.CartRepository;
+import com.masai.Repository.CustomerRepo;
 import com.masai.Repository.OrderRepository;
+import com.masai.Repository.UserSession;
+import com.masai.model.CurrentUserSession;
 import com.masai.model.Orders;
 
 @Service
@@ -16,15 +20,22 @@ public class OrderServiceImpl implements OrderService {
 
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@Autowired
+	private UserSession userRepo;
+	
+	@Autowired
+	private CustomerRepo customerRepo;
+	
+	@Autowired
+	private CartRepository cartRepo;
 
 	@Override
-	public Orders addOrder(Orders order) throws OrderException {
+	public Orders addOrder(Orders order,String key) throws OrderException {
 
-		Optional<Orders> or = orderRepository.findById(order.getOrderId());
+		CurrentUserSession user = userRepo.findByUuid(key);
 
-		if (or.isPresent()) {
-			throw new OrderException("Order already present with this order id : " + order.getOrderId());
-		}
+		
 
 		return orderRepository.save(order);
 	}

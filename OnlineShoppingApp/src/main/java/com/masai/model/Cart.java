@@ -25,8 +25,7 @@ public class Cart {
 	
 	@OneToOne(fetch = FetchType.EAGER)
 	private Customer customer;
-	
-	
+
 	
 	
 	
