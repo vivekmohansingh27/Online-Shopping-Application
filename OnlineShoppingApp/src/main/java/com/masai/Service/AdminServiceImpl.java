@@ -1,13 +1,13 @@
 package com.masai.Service;
 
+import com.masai.Repository.ProductRepository;
+import com.masai.model.Product;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.masai.Repository.ProductRepository;
-import com.masai.model.Product;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -45,4 +45,5 @@ public class AdminServiceImpl implements AdminService {
     public void removeProduct(Integer id) {
         productRepository.deleteById(id);
     }
+
 }

@@ -10,4 +10,5 @@ public interface AdminService {
     public void addProduct(Product product);
     public void updateProduct(Product product);
     public void removeProduct(Integer id);
+
 }
