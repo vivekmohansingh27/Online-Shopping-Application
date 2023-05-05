@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.masai.Exception.ProductException;
+import com.masai.Exception.UserException;
 import com.masai.Repository.CategoryRepository;
 import com.masai.Repository.ProductRepository;
+import com.masai.Repository.UserSession;
 import com.masai.model.Category;
+import com.masai.model.CurrentUserSession;
 import com.masai.model.Product;
 
 @Service
@@ -21,6 +24,11 @@ public class ProductServiceImpl implements ProductService{
 	@Autowired
 	private CategoryRepository catRepo;
 	
+	@Autowired
+	private UserSession userRepo;
+	
+	
+	
 	@Override
 	public List<Product> viewAllProduct() throws ProductException {
 		List<Product> productList = proRepo.findAll();
@@ -29,9 +37,23 @@ public class ProductServiceImpl implements ProductService{
 		}
 		return productList;
 	}
+	
+	
+	
+	
 
 	@Override
-	public Product addProduct(Product product) throws ProductException {
+	public Product addProduct(Product product, String key) throws ProductException {
+		
+		
+
+		CurrentUserSession user = userRepo.findByUuid(key);
+		
+		if(user==null) {
+			throw new UserException("Please Login first");
+		}
+		
+		
 		Optional<Product> prod = proRepo.findById(product.getProductId());
 		
 		if(prod.isPresent()) {
@@ -40,9 +62,23 @@ public class ProductServiceImpl implements ProductService{
 		 
 		return proRepo.save(product);
 	}
+	
+	
+	
+	
 
 	@Override
-	public Product updateProduct(Product product) throws ProductException {
+	public Product updateProduct(Product product, String key) throws ProductException {
+		
+		
+		
+     CurrentUserSession user = userRepo.findByUuid(key);
+		
+		if(user==null) {
+			throw new UserException("Please Login first");
+		}
+		
+		
 		
 		Optional<Product> prod = proRepo.findById(product.getProductId());
 		if(prod.isPresent()==false) {
@@ -72,8 +108,19 @@ public class ProductServiceImpl implements ProductService{
 		return prod.get();
 	}
 	
+	
+	
+	
 	@Override
-	public Product deleteProductById(Integer id) throws ProductException {
+	public Product deleteProductById(Integer id, String Key) throws ProductException {
+		
+		
+		  CurrentUserSession user = userRepo.findByUuid(Key);
+			
+			if(user==null) {
+				throw new UserException("Please Login first");
+			}
+			
 		
 		Optional<Product> prod = proRepo.findById(id);
 		if(prod.isPresent()==false) {
@@ -94,6 +141,9 @@ public class ProductServiceImpl implements ProductService{
 //		
 //		return proList;
 //	}
+	
+	
+	
 	@Override
 	public List<Product> getAllProductByCategoryName(String name) throws ProductException {
 		String catName = name.toUpperCase();
@@ -105,8 +155,21 @@ public class ProductServiceImpl implements ProductService{
 		return proList;
 	}
 	
+	
+	
+	
+	
 	@Override
-	public Category addCategory(Category category) throws ProductException {
+	public Category addCategory(Category category, String Key) throws ProductException {
+		
+		  CurrentUserSession user = userRepo.findByUuid(Key);
+			
+			if(user==null) {
+				throw new UserException("Please Login first");
+			}
+			
+		
+		
 		Optional<Category> cat = catRepo.findById(category.getCatId());
 		
 		if(cat.isPresent()) {
@@ -116,8 +179,22 @@ public class ProductServiceImpl implements ProductService{
 		return catRepo.save(category);
 	}
 	
+	
+	
+	
+	
 	@Override
-	public Category deleteCategory(Integer catId) throws ProductException {
+	public Category deleteCategory(Integer catId , String Key) throws ProductException {
+		
+		
+		  CurrentUserSession user = userRepo.findByUuid(Key);
+			
+			if(user==null) {
+				throw new UserException("Please Login first");
+			}
+			
+			
+		
 		Optional<Category> cat = catRepo.findById(catId);
 		
 		if(cat.isPresent()==false) {

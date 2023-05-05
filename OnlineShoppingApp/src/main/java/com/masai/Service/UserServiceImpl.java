@@ -34,12 +34,12 @@ public class UserServiceImpl implements UserService {
 		if (user.getType().equalsIgnoreCase("customer")) {
 			Customer customer = customerRepo.findByMobileNumber(user.getUserId());
 			if (customer == null)
-				throw new UserException("Mobile number not existed");
+				throw new UserException("Mobile number does not exixts !");
 
 			Optional<CurrentUserSession> optional = session.findById(customer.getCustomerId());
 
 			if (optional.isPresent())
-				throw new UserException("Already Logged In");
+				throw new UserException(" Customer is already Logged In");
 			if (customer.getPassword().equalsIgnoreCase(user.getPassword())) {
 				String key = RandomString.make(6);
 
@@ -53,16 +53,16 @@ public class UserServiceImpl implements UserService {
 				throw new UserException("Please Provide valid password");
 			}
 		}else if (user.getType().equalsIgnoreCase("admin")) {
-			Admin admin = adminRepo.findByEmailId(user.getUserId());
+			Admin admin = adminRepo.findByEmail(user.getUserId());
 			
 			if(admin == null) {
-				throw new AdminException("Email id does not existed");
+				throw new AdminException("Admin with this email id does not exists");
 			}
 			
 			Optional<CurrentUserSession> optional= session.findById(admin.getId());
 			
 			if(optional.isPresent()) {
-				throw new AdminException("Already Logged In");
+				throw new AdminException("Admin is already Logged In");
 			}
 			
 			if(admin.getPassword().equalsIgnoreCase(user.getPassword())) {
@@ -73,11 +73,14 @@ public class UserServiceImpl implements UserService {
 				session.save(currentUserSession);
 				return currentUserSession.toString();
 				
+			}else {
+				throw new UserException("Wrong password ");
+
 			}
 		} else { 
 			throw new UserException("Invalid User detailes ");
 		}
-		return "Something went wrong";
+		
 			
 
 	}
@@ -85,7 +88,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String logOutFromAccount(String key) {
 		CurrentUserSession currentUserSession = session.findByUuid(key);
-		if(currentUserSession.equals(null)) throw new UserException("User Not Logged In with this number");
+		if(currentUserSession.equals(null)) throw new UserException("User is not Logged In with this number");
 		
 		session.delete(currentUserSession);
 		return "Logged Out Successfully !";

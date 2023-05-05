@@ -15,7 +15,7 @@ public interface OrderRepository extends JpaRepository<Orders, Integer>{
 	
 	public List<Orders> findByOrderDate(LocalDate orderDate) throws OrderException;
 	
-	@Query("select e from orders e inner join address a on a.address_id=e.AID where a.city = ?1")
-	public List<Orders> findByOrderByCity(String city) throws OrderException;
+//	@Query("select e from orders e inner join address a on a.address_id=e.AID where a.city = ?1")
+//	public List<Orders> findByOrderByCity(String city) throws OrderException;
 	
 }
