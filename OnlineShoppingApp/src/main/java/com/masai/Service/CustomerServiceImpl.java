@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.masai.Exception.AlreadyExistedException;
 import com.masai.Exception.InputInvalidException;
+import com.masai.Exception.UserException;
 import com.masai.Repository.CartRepository;
 import com.masai.Repository.CustomerRepo;
-import com.masai.model.Customer;
+import com.masai.Repository.UserRepo;
+import com.masai.Repository.UserSession;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -20,6 +22,9 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	private CartRepository cartRepo;
+	
+	@Autowired
+	private UserSession userRepo;
 
 	@Override
 	public Customer saveCustomer(Customer customer) {
@@ -50,7 +55,13 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer deleteCustomer(Integer id) {
+	public Customer deleteCustomer(Integer id, String key) {
+		
+		CurrentUserSession user = userRepo.findByUuid(key);
+		
+		if(user==null) {
+			throw new UserException("Please Login first");
+		}
 
 		Optional<Customer> customer2 = customerRepo.findById(id);
 
@@ -62,13 +73,20 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer updateCustomer(Customer customer) {
+	public Customer updateCustomer(Customer customer, String key) {
 
+		CurrentUserSession user = userRepo.findByUuid(key);
+		
+		if(user==null) {
+			throw new UserException("Please Login first");
+		}
 		Optional<Customer> customer2 = customerRepo.findById(customer.getCustomerId());
 
 		if (customer2.isEmpty())
 			throw new InputInvalidException("Wrong Customer Id");
-
+		
+		customer2.get().setAddress(customer.getAddress());
+			
 		Customer customer3 = customerRepo.save(customer2.get());
 		return customer3;
 	}

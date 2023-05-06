@@ -1,6 +1,9 @@
 package com.masai.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,10 +18,12 @@ import com.masai.Repository.CustomerRepo;
 import com.masai.Repository.OrderRepository;
 import com.masai.Repository.UserSession;
 import com.masai.model.Address;
+import com.masai.model.Cart;
 import com.masai.model.CurrentUserSession;
 import com.masai.model.Customer;
 import com.masai.model.Orders;
 import com.masai.model.Product;
+import com.masai.model.ProductDTO;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -33,41 +38,98 @@ public class OrderServiceImpl implements OrderService {
 	private CustomerRepo customerRepo;
 	
 	@Autowired
-	private CartRepository cartRepo;
+	private CartRepository cartRepository;
+	
 
 	@Override
-	public Orders addOrder(Orders order,String key) throws OrderException, CartException {
-
-		CurrentUserSession user = userRepo.findByUuid(key);
+	public Orders addOrder(Integer customerId) throws OrderException, CartException {
+		CurrentUserSession loggedInUser = userRepo.findById(customerId).orElseThrow(()-> 
+											new UserException("Please provide a valid customerId or Login First"));
 		
-		if(user==null) {
-			throw new UserException("Please Login first");
+		Orders newOrder = new Orders();
+		
+		Optional<Customer> loggedCus= customerRepo.findById(customerId);
+		
+		if(customerId == loggedInUser.getUserId()) {
+			Optional<Cart> cart= cartRepository.findById(customerId);
+			
+			Cart cartDetailes= cart.get();
+			
+			
+			
+			List<Product> list= cartDetailes.getProduct();
+			
+			if(list.isEmpty()) {
+				throw new UserException("Add products to cart first");
+			}
+			
+			List<ProductDTO> listDTO= new ArrayList<>();
+			
+			for(Product p: list) {
+				ProductDTO pDTO= new ProductDTO();
+				
+				pDTO.setProductId(p.getProductId());
+				pDTO.setProductName(p.getProductName());
+				pDTO.setPrice(p.getPrice());
+				pDTO.setDescription(p.getDescription());
+				pDTO.setManufacturer(p.getManufacturer());
+				pDTO.setQuantity(p.getQuantity());
+				
+				listDTO.add(pDTO);
+				
+			}
+			
+			cartDetailes.setProduct(null);
+			cartRepository.save(cartDetailes);
+			
+			newOrder.setOrderDate(LocalDate.now());
+			newOrder.setOrderStatus("Order Confirm");
+			newOrder.setProductList(listDTO);
+			newOrder.setCustomer(loggedCus.get());
+			newOrder.setAddress(loggedCus.get().getAddress());
+			
+			return orderRepository.save(newOrder);
+			
 		}
-		
-		Integer id = user.getUserId();
-		
-		Optional<Customer> cs = customerRepo.findById(id);
-		
-		Customer customer = cs.get();
+		else
+		throw new UserException("Invalid customer details, please login first");
 		
 		
 		
-		Address address = customer.getAddress();
 		
-		List<Product> productList = customer.getCart().getProduct();
-		if(productList.isEmpty()) {
-			throw new CartException("Product List is empty");
-		}
-		Orders orders  = new Orders();
 		
-		orders.setAddress(address);
-		orders.setCustomer(customer);
-		orders.setOrderDate(LocalDate.now());
-		orders.setOrderStatus("confirmed");
-		orders.setProduct(productList);
 		
-		return orderRepository.save(orders);
-		
+//		
+//		CurrentUserSession user = userRepo.findByUuid(key);
+//		
+//		if(user==null) {
+//			throw new UserException("Please Login first");
+//		}
+//		
+//		Integer id = user.getUserId();
+//		
+//		Optional<Customer> cs = customerRepo.findById(id);
+//		
+//		Customer customer = cs.get();
+//		
+//		
+//		
+//		Address address = customer.getAddress();
+//		
+//		List<Product> productList = customer.getCart().getProduct();
+//		if(productList.isEmpty()) {
+//			throw new CartException("Product List is empty");
+//		}
+//		Orders orders = new Orders();
+//		
+//		orders.setAddress(address);
+//		orders.setCustomer(customer);
+//		orders.setOrderDate(LocalDate.now());
+//		orders.setOrderStatus("confirmed");
+//		orders.setProduct(productList);
+//		
+//		return orderRepository.save(orders);
+//		
 	}
 
 	@Override
@@ -94,18 +156,59 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Orders removeOrder(Integer orderId,String key) throws OrderException {
+	public String removeOrder(Integer orderId,String key) throws OrderException {
 
 		CurrentUserSession user = userRepo.findByUuid(key);
-		
-		if(user==null) {
-			throw new UserException("Please Login first");
-		}
-		Orders or = orderRepository.findById(orderId)
-				.orElseThrow(() -> new OrderException("Order does not exist with id : " + orderId));
+	    if (user == null) {
+	        throw new UserException("Please Login first");
+	    }
 
-		orderRepository.delete(or);
-		return or;
+	    
+	        Optional<Orders> order = orderRepository.findById(orderId);
+	        
+	        Integer cusId= order.get().getCustomer().getCustomerId();
+	        
+	        Customer customer= order.get().getCustomer();
+	        
+	        List<Orders> orderList= customer.getOrders();
+	        
+	        for (Iterator<Orders> iterator = orderList.iterator(); iterator.hasNext();) {
+	            Orders or = iterator.next();
+	            if (or.getOrderId() == orderId) {
+	                iterator.remove();
+	                break;
+	            }
+	        }
+	        
+	        customer.setOrders(orderList);
+	        customerRepo.save(customer);
+	        
+	        orderRepository.delete(order.get());
+	        return "Order deleted !";
+	   
+		
+		
+		
+		
+		
+		
+		
+		
+//		CurrentUserSession user = userRepo.findByUuid(key);
+//		
+//		if(user==null) {
+//			throw new UserException("Please Login first");
+//		}
+//
+//
+//		Optional<Orders> order= orderRepository.findById(orderId);
+//		
+//		if(!order.isPresent()) {
+//			throw new OrderException("Order does not exist with id :  "+ orderId);
+//		}
+//		
+//		orderRepository.deleteById(order.get().getOrderId());
+//		return order.get();
 	}
 
 	@Override

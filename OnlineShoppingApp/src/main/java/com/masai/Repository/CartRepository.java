@@ -8,7 +8,6 @@ import com.masai.model.Cart;
 
 @Repository
 public interface CartRepository extends JpaRepository<Cart,Integer> {
-	
-	
+
 
 }
