@@ -41,6 +41,7 @@ public class AdminServiceImpl implements AdminService {
         productRepository.save(product);
     }
 
+    
     @Override
     public void removeProduct(Integer id) {
         productRepository.deleteById(id);
