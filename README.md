@@ -1,5 +1,5 @@
 <h1 align="center">ShopKaro.</h1>
-<img src="logo.jpeg" alt="" style="width: 90%; margin: 0 auto; border: 2px solid darkred;">
+<img src="logoimages/logo.jpeg" alt="" style="width: 90%; margin: 0 auto; border: 2px solid darkred;">
 
 This is an Online Shopping Application developed for ABC Company. The application is designed to allow customers to browse, purchase, and view their order details, and to allow admins to manage the products in the store.
 
