@@ -18,7 +18,7 @@ public interface ProductService {
 	
 	public Product deleteProductById(Integer id,String Key) throws ProductException;
 
-	//public List<Product> getAllProductByCategoryName(String name)throws ProductException;
+//	public List<Product> getAllProductByCategoryName(String name)throws ProductException;
 	
 	public Category deleteCategory(Integer catId , String Key) throws ProductException;
 	

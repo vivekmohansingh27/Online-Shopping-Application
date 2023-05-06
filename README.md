@@ -1,4 +1,5 @@
 <h1 align="center">ShopKaro.</h1>
+<img src="logo.jpeg" alt="" style="width: 90%; margin: 0 auto; border: 2px solid darkred;">
 
 This is an Online Shopping Application developed for ABC Company. The application is designed to allow customers to browse, purchase, and view their order details, and to allow admins to manage the products in the store.
 
@@ -54,11 +55,11 @@ Overall, this Online Shopping Application is a simple and easy-to-use platform t
     
   ###Cart Module 
   
-  1. Add products to the cart
-  2. Remove products from cart
-  3. Update the quantity of products in the cart
-  4. Remove all products from the cart
-  5. View List of products from the cart 
+    1. Add products to the cart
+    2. Remove products from cart
+    3. Update the quantity of products in the cart
+    4. Remove all products from the cart
+    5. View List of products from the cart 
     
     
   ###Login Module

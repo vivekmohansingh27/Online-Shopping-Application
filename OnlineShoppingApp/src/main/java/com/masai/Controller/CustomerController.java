@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.Service.CustomerService;
@@ -34,14 +35,14 @@ public class CustomerController {
 	}
 
 	@DeleteMapping("/customerDelete")
-	public ResponseEntity<Customer> deleteCustmerHandller(@Valid @RequestBody Customer customer) {
-		Customer customer2 = customerService.deleteCustomer(customer.getCustomerId());
+	public ResponseEntity<Customer> deleteCustmerHandller(@Valid @RequestBody Customer customer,@RequestParam("Session Key") String key) {
+		Customer customer2 = customerService.deleteCustomer(customer.getCustomerId(),key);
 		return new ResponseEntity<>(customer2, HttpStatus.OK);
 	}
 
 	@PutMapping("/customerUpdate")
-	public ResponseEntity<Customer> updateCustmerHandller(@Valid @RequestBody Customer customer) {
-		Customer customer2 = customerService.updateCustomer(customer);
+	public ResponseEntity<Customer> updateCustmerHandller(@Valid @RequestBody Customer customer,@RequestParam("Session Key") String key) {
+		Customer customer2 = customerService.updateCustomer(customer,key);
 		return new ResponseEntity<>(customer2, HttpStatus.OK);
 	}
 
