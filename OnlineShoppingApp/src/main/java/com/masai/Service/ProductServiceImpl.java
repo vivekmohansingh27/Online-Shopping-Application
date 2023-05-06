@@ -89,8 +89,14 @@ public class ProductServiceImpl implements ProductService{
 		Product p = prod.get();
 		p.setPrice(product.getPrice());
 		p.setProductName(product.getProductName());
+		Category existingCategory = p.getCategory();
+		Category newCategory = product.getCategory();
+		if (newCategory != null) {
+		existingCategory.setCatName(newCategory.getCatName());
+		existingCategory.setProduct(newCategory.getProduct());
+		}
+	//	p.setCategory(product.getCategory());
 		
-		p.setCategory(product.getCategory());
 		p.setDescription(product.getDescription());
 		p.setManufacturer(product.getManufacturer());
 		p.setQuantity(product.getQuantity());
@@ -98,6 +104,41 @@ public class ProductServiceImpl implements ProductService{
 		return proRepo.save(p);
 		
 	}
+	
+	
+//public Product updateProduct(Product product) throws ProductException {
+//		
+//		Optional<Product> optionalProduct = proRepo.findById(product.getProductId());
+//		if(optionalProduct.isEmpty()) {
+//			throw new ProductException("No Product is present in the List");
+//		}
+//		
+//		Product existingProduct = optionalProduct.get();
+//		existingProduct.setPrice(product.getPrice());
+//		existingProduct.setProductName(product.getProductName());
+//		existingProduct.setQuantity(product.getQuantity());
+//		existingProduct.setDescription(product.getDescription());
+//		
+//		Category existingCategory = existingProduct.getCategory();
+//		Category newCategory = product.getCategory();
+//		if (newCategory != null) {
+//			existingCategory.setCategoryName(newCategory.getCategoryName());
+//			existingCategory.setProducts(newCategory.getProducts());
+//		}
+//		
+//		Manufacturer existingManufacturer = existingProduct.getManufacturer();
+//		Manufacturer newManufacturer = product.getManufacturer();
+//		if (newManufacturer != null) {
+//			existingManufacturer.setName(newManufacturer.getName());
+//			existingManufacturer.setAddress(newManufacturer.getAddress());
+//			existingManufacturer.setProducts(newManufacturer.getProducts());
+//		}
+//		
+//		return proRepo.save(existingProduct);
+//		
+//	}
+	
+	
 
 	@Override
 	public Product getProductById(Integer id) throws ProductException {
@@ -132,34 +173,8 @@ public class ProductServiceImpl implements ProductService{
 		return p;
 	}
 
-//	@Override
-//	public List<Product> getAllProductByCategoryName(String name) throws ProductException {
-//		String catName = name.toUpperCase();
-//		List<Product> proList = proRepo.getAllProductByCategoryName(catName);
-//		if(proList.isEmpty()) {
-//			throw new ProductException("No Product is present in the category");
-//		}
-//		
-//		return proList;
-//	}
 
-	
-	
-	
-//	@Override
-//	public List<Product> getAllProductByCategoryName(String name) throws ProductException {
-//		String catName = name.toUpperCase();
-//		List<Product> proList = catRepo.findByCatName(catName);
-//		if(proList.isEmpty()) {
-//			throw new ProductException("No Product is present in the category");
-//		}
-//		
-//		return proList;
-//	}
 
-	
-	
-	
 	
 	
 	@Override

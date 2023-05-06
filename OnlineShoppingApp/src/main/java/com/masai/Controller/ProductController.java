@@ -51,11 +51,7 @@ public class ProductController {
 	}
 	
 
-//	@GetMapping("/getProductsByName/{name}")
-//	public ResponseEntity<List<Product>> getAllProductsByCategoryName(@PathVariable("name") String name){
-//		
-//		return new ResponseEntity<>(ps.getAllProductByCategoryName(name),HttpStatus.OK);
-//	}
+
 
 	
 	@DeleteMapping("/products/{id}")

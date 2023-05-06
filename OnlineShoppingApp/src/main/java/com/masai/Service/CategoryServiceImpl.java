@@ -32,16 +32,14 @@ public class CategoryServiceImpl implements CategoryService{
  		return cat.get().getProduct();
 	}
 	
+	
+	
+	@Override
 	public List<Category> getAllCategoty(){
 		return catrepo.findAll();
 	}
 	
-//	public List<Product> getAllProductsByCategory(String catName){
-//		//Category cate = catrepo.findByCatName(catName);
-//		List<Product> list = cate.getProduct();
-//		
-//		return list;
-//	}
+
 	
 	
 

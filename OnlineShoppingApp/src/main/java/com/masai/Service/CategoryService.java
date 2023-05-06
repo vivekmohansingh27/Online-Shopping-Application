@@ -10,5 +10,7 @@ public interface CategoryService {
 
 	
 
-	List<Product> getAllProductsByCategory(String catName);
+	public List<Product> getAllProductsByCategory(String catName);
+
+	public List<Category> getAllCategoty();
 }
