@@ -184,23 +184,7 @@ public class ProductServiceImpl implements ProductService{
 //		return proList;
 //	}
 
-	
-	
-	
-	@Override
-	public List<Product> getAllProductByCategoryName(String name) throws ProductException {
-		String catName = name.toUpperCase();
-		List<Product> proList = catRepo.findByCatName(catName);
-		if(proList.isEmpty()) {
-			throw new ProductException("No Product is present in the category");
-		}
-		
-		return proList;
-	}
 
-	
-	
-	
 	
 	
 	@Override

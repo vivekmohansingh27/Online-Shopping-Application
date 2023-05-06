@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.Exception.AdminException;
 import com.masai.Service.AdminService;
@@ -26,8 +27,7 @@ import com.masai.model.Category;
 import com.masai.model.Product;
 
 
-@Controller
-@RequestMapping("/admin")
+@RestController
 public class AdminController {
 	
     @Autowired
@@ -39,21 +39,21 @@ public class AdminController {
     @Autowired
     private CategoryService catService;
     
-    @GetMapping("/products")
+    @GetMapping("admin/products")
 	public ResponseEntity<List<Product>> getAllProducts(){
 		
 		return new ResponseEntity<>(proService.viewAllProduct(),HttpStatus.OK);
 	}
     
     
-    @GetMapping("/products/{id}")
+    @GetMapping("admin/products/{id}")
 	public ResponseEntity<Product> getProductById(@PathVariable("id") Integer id){
 		
 		return new ResponseEntity<>(proService.getProductById(id),HttpStatus.OK);
 	}
 
     
-    @PostMapping("/products")
+    @PostMapping("admin/products")
 	public ResponseEntity<Product> addProduct(@RequestBody Product product ,@RequestParam("sessionKey") String key){
 		
 		return new ResponseEntity<>(proService.addProduct(product,key),HttpStatus.OK);
@@ -61,19 +61,19 @@ public class AdminController {
     
     
     
-    @PutMapping("/products")
+    @PutMapping("admin/products")
 	public ResponseEntity<Product> updateProduct(@RequestBody Product product,@RequestParam("sessionKey") String key){
 		
 		return new ResponseEntity<>(proService.updateProduct(product,key),HttpStatus.OK);
 	}
     
-    @DeleteMapping("/products/{id}")
+    @DeleteMapping("admin/products/{id}")
 	public ResponseEntity<Product> deleteProductById(@PathVariable("id") Integer id, @RequestParam("sessionKey") String key){
 		
 		return new ResponseEntity<>(proService.deleteProductById(id ,key),HttpStatus.OK);
 	}
     
-    @GetMapping("/category")
+    @GetMapping("admin/category")
 	public ResponseEntity<List<Category>> getAllProductsHandler(){
 		
 		List<Category> list  = catService.getAllCategoty();
@@ -82,7 +82,7 @@ public class AdminController {
 	}
     
     
-    @GetMapping("/category/name")
+    @GetMapping("admin/category/name")
 	public ResponseEntity<List<Product>> getAllProductsHandler(@RequestParam String category){
 		
 		List<Product> list  = catService.getAllProductsByCategory(category);
@@ -90,13 +90,13 @@ public class AdminController {
 		return new ResponseEntity<>(list,HttpStatus.OK);
 	}
     
-    @PostMapping("/category")
+    @PostMapping("admin/category")
 	public ResponseEntity<Category> addCategory(@RequestBody Category category, @RequestParam("sessionKey") String key){
 		
 		return new ResponseEntity<>(proService.addCategory(category ,key),HttpStatus.OK );
 	}
 	
-	@DeleteMapping("/category/{id}")
+	@DeleteMapping("admin/category/{id}")
 	public ResponseEntity<Category> deleteCategoryById(@PathVariable("id") Integer id, @RequestParam("sessionKey") String key){
 		
 		return new ResponseEntity<>(proService.deleteCategory(id,key),HttpStatus.OK);
