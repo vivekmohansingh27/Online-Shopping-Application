@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.masai.Exception.AdminException;
 import com.masai.Service.AdminService;
+import com.masai.Service.CategoryService;
 import com.masai.Service.ProductService;
 import com.masai.Service.ProductServiceImpl;
 import com.masai.model.Category;
@@ -33,6 +35,9 @@ public class AdminController {
     
     @Autowired
     private ProductService proService;
+    
+    @Autowired
+    private CategoryService catService;
     
     @GetMapping("/products")
 	public ResponseEntity<List<Product>> getAllProducts(){
@@ -66,6 +71,23 @@ public class AdminController {
 	public ResponseEntity<Product> deleteProductById(@PathVariable("id") Integer id){
 		
 		return new ResponseEntity<>(proService.deleteProductById(id),HttpStatus.OK);
+	}
+    
+    @GetMapping("/category")
+	public ResponseEntity<List<Category>> getAllProductsHandler(){
+		
+		List<Category> list  = catService.getAllCategoty();
+		
+		return new ResponseEntity<>(list,HttpStatus.OK);
+	}
+    
+    
+    @GetMapping("/category/name")
+	public ResponseEntity<List<Product>> getAllProductsHandler(@RequestParam String category){
+		
+		List<Product> list  = catService.getAllProductsByCategory(category);
+		
+		return new ResponseEntity<>(list,HttpStatus.OK);
 	}
     
     @PostMapping("/category")

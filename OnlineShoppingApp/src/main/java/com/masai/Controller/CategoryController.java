@@ -21,11 +21,22 @@ public class CategoryController {
 	@Autowired
 	private CategoryService cs;
 	
-	@GetMapping("/category")
+	@GetMapping("/category/name")
 	public ResponseEntity<List<Product>> getAllProductsHandler(@RequestParam String category){
 		
 		List<Product> list  = cs.getAllProductsByCategory(category);
 		
 		return new ResponseEntity<>(list,HttpStatus.OK);
 	}
+	
+	
+	@GetMapping("/category")
+	public ResponseEntity<List<Category>> getAllProductsHandler(){
+		
+		List<Category> list  = cs.getAllCategoty();
+		
+		return new ResponseEntity<>(list,HttpStatus.OK);
+	}
+	
+	
 }
