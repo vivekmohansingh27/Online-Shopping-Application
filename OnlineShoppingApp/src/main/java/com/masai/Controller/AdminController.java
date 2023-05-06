@@ -54,23 +54,23 @@ public class AdminController {
 
     
     @PostMapping("/products")
-	public ResponseEntity<Product> addProduct(@RequestBody Product product){
+	public ResponseEntity<Product> addProduct(@RequestBody Product product ,@RequestParam("sessionKey") String key){
 		
-		return new ResponseEntity<>(proService.addProduct(product),HttpStatus.OK);
+		return new ResponseEntity<>(proService.addProduct(product,key),HttpStatus.OK);
 	}
     
     
     
     @PutMapping("/products")
-	public ResponseEntity<Product> updateProduct(@RequestBody Product product){
+	public ResponseEntity<Product> updateProduct(@RequestBody Product product,@RequestParam("sessionKey") String key){
 		
-		return new ResponseEntity<>(proService.updateProduct(product),HttpStatus.OK);
+		return new ResponseEntity<>(proService.updateProduct(product,key),HttpStatus.OK);
 	}
     
     @DeleteMapping("/products/{id}")
-	public ResponseEntity<Product> deleteProductById(@PathVariable("id") Integer id){
+	public ResponseEntity<Product> deleteProductById(@PathVariable("id") Integer id, @RequestParam("sessionKey") String key){
 		
-		return new ResponseEntity<>(proService.deleteProductById(id),HttpStatus.OK);
+		return new ResponseEntity<>(proService.deleteProductById(id ,key),HttpStatus.OK);
 	}
     
     @GetMapping("/category")
@@ -91,14 +91,14 @@ public class AdminController {
 	}
     
     @PostMapping("/category")
-	public ResponseEntity<Category> addCategory(@RequestBody Category category){
+	public ResponseEntity<Category> addCategory(@RequestBody Category category, @RequestParam("sessionKey") String key){
 		
-		return new ResponseEntity<>(proService.addCategory(category),HttpStatus.OK);
+		return new ResponseEntity<>(proService.addCategory(category ,key),HttpStatus.OK );
 	}
 	
 	@DeleteMapping("/category/{id}")
-	public ResponseEntity<Category> deleteCategoryById(@PathVariable("id") Integer id){
+	public ResponseEntity<Category> deleteCategoryById(@PathVariable("id") Integer id, @RequestParam("sessionKey") String key){
 		
-		return new ResponseEntity<>(proService.deleteCategory(id),HttpStatus.OK);
+		return new ResponseEntity<>(proService.deleteCategory(id,key),HttpStatus.OK);
 	}
 }

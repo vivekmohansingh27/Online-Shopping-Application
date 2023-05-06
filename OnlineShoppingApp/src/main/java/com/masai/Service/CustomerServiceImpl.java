@@ -1,5 +1,6 @@
 package com.masai.Service;
 
+import java.util.List;
 import java.util.Optional;
 import com.masai.model.*;
 
@@ -16,7 +17,7 @@ import com.masai.model.Customer;
 public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private CustomerRepo customerRepo;
-	
+
 	@Autowired
 	private CartRepository cartRepo;
 
@@ -24,29 +25,28 @@ public class CustomerServiceImpl implements CustomerService {
 	public Customer saveCustomer(Customer customer) {
 
 //		Customer customer2 = customerRepo.findCustomerByMobileNumber(customer.getMobileNumber());
-		
+
 		Optional<Customer> customer2 = customerRepo.findById(customer.getCustomerId());
 		if (customer2.isPresent())
 			throw new AlreadyExistedException("Customer already exists ");
 
-		//customer=customer2.get(); 
-		
-		Customer savedCustomer= customerRepo.save(customer);
+
 		
 		
-		 Cart cart= new Cart();
-	       
-         cart.setCartId(savedCustomer.getCustomerId());
-	     cart.setCustomer(customer);
-	     cart.setProduct(null);
-	       
-         cartRepo.save(cart);
-         
-         savedCustomer.setCart(cart);
-	      
-         return customerRepo.save(savedCustomer);	
-           
-           
+		Customer savedCustomer = customerRepo.save(customer);
+
+		Cart cart = new Cart();
+		cart.setCartId(savedCustomer.getCustomerId());
+		cart.setCustomer(savedCustomer);
+
+		cart.setProduct(null);
+
+		cartRepo.save(cart);
+
+		savedCustomer.setCart(cart);
+
+		return customerRepo.save(savedCustomer);
+
 	}
 
 	@Override
@@ -79,6 +79,39 @@ public class CustomerServiceImpl implements CustomerService {
 		if (customer2.isEmpty())
 			throw new InputInvalidException("Wrong Customer Id");
 		return customer2.get();
+	}
+
+	@Override
+	public List<Customer> getAllCustomer() {
+		List<Customer> customers = customerRepo.getAllCustmer();
+		return customers;
+	}
+
+	@Override
+	public Customer saveAddress(Address address, Customer customer) {
+
+//		Customer customer2 = customerRepo.findCustomerByMobileNumber(customer.getMobileNumber());
+
+		Optional<Customer> customer2 = customerRepo.findById(customer.getCustomerId());
+		if (customer2.isEmpty())
+			throw new AlreadyExistedException("Customer not exists");
+		Customer customer3 = customer2.get();
+		customer3.setAddress(address);
+
+		return customerRepo.save(customer3);
+	}
+	@Override
+	public Customer removeAddress(Customer customer) {
+
+//		Customer customer2 = customerRepo.findCustomerByMobileNumber(customer.getMobileNumber());
+
+		Optional<Customer> customer2 = customerRepo.findById(customer.getCustomerId());
+		if (customer2.isEmpty())
+			throw new AlreadyExistedException("Customer not exists");
+		Customer customer3 = customer2.get();
+		customer3.setAddress(null);
+
+		return customerRepo.save(customer3);
 	}
 
 }
