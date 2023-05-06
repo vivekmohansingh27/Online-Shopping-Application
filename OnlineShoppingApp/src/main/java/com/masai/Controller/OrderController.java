@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.Exception.CartException;
@@ -26,12 +27,13 @@ public class OrderController {
 	@Autowired
 	private OrderService orService;
 	
-	@PostMapping("/orders/{key}")
-	public ResponseEntity<Orders> addOrderController (@RequestBody Orders order,@PathVariable String key) throws OrderException, CartException{
+	@PostMapping("/orders")
+	public ResponseEntity<Orders> addOrderController (@RequestParam Integer customerId) throws OrderException, CartException{
 		
-		Orders addOr= orService.addOrder(order,key);
+		Orders addOr= orService.addOrder(customerId);
 		
-		return new ResponseEntity<Orders>(addOr, HttpStatus.CREATED);
+		return new ResponseEntity<Orders>(addOr,HttpStatus.OK);
+		
 		
 	}
 	
@@ -44,11 +46,11 @@ public class OrderController {
 	}
 	
 	@DeleteMapping("/orders/{orderId}/{key}")
-	public ResponseEntity<Orders> deleteOrderController (@PathVariable ("orderId") Integer orderId ,@PathVariable String key) throws OrderException{
+	public ResponseEntity<String> deleteOrderController (@PathVariable ("orderId") Integer orderId ,@PathVariable String key) throws OrderException{
 		
-		Orders deleteOr= orService.removeOrder(orderId,key);
+		String deleteOr= orService.removeOrder(orderId,key);
 		
-		return new ResponseEntity<Orders>(deleteOr,HttpStatus.OK);
+		return new ResponseEntity<String>(deleteOr,HttpStatus.OK);
 	}
 	
 	@GetMapping("/ordersId/{orderId}")
