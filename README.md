@@ -11,7 +11,8 @@ The application is built using Spring Boot and follows the Model-View-Controller
 The application uses POJO classes to represent the entities in the system. The classes include Customer, Admin, Product, Order, and Cart. The service layer is designed using interfaces, such as CustomerService and AdminService, to provide separation between the business logic and the controller layer.
 
 Overall, this Online Shopping Application is a simple and easy-to-use platform that allows customers to shop online and admins to manage the products in the store.
--ER DIAGRAM
+
+# ER DIAGRAM
 
 ![ERDIAGRAM](https://user-images.githubusercontent.com/71522419/236664589-b3302ac1-f1bc-4010-9bdc-80f90c69b7d7.png)
 
@@ -19,15 +20,15 @@ Overall, this Online Shopping Application is a simple and easy-to-use platform t
 <br/>
 
 
--Tech Stack
+# Tech Stack
   1. Java Core
   2. MySql
   3. Maven
   4. SpringBoot
   
-  ##Features:-
+# Features:-
   
-  ###Customer Module
+  # Customer Module
   
     1. User registration and login
     2. Browse and search products
@@ -36,7 +37,7 @@ Overall, this Online Shopping Application is a simple and easy-to-use platform t
     5. Check out and purchase products
     6. View order history and details
     
-  ###Product Module
+  # Product Module
   
     1. Search for products
     2. View product details and images
@@ -44,7 +45,7 @@ Overall, this Online Shopping Application is a simple and easy-to-use platform t
     4. Update existing products
     5. Remove products from the database
     
-  ###Order Module
+  # Order Module
   
     1. Create and manage orders
     2. View order history and details
@@ -55,7 +56,7 @@ Overall, this Online Shopping Application is a simple and easy-to-use platform t
     7. View cart contents
     8. Remove products from cart
     
-  ###Cart Module 
+  # Cart Module 
   
     1. Add products to the cart
     2. Remove products from cart
@@ -64,7 +65,7 @@ Overall, this Online Shopping Application is a simple and easy-to-use platform t
     5. View List of products from the cart 
     
     
-  ###Login Module
+  # Login Module
   
     1. Secure user authentication and authorization
     2. Password reset functionality
