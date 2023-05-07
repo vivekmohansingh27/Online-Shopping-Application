@@ -21,8 +21,14 @@ import com.masai.model.Customer;
 
 import jakarta.validation.Valid;
 
+
 @RestController
+<<<<<<< HEAD
 @CrossOrigin(origins = "*")
+=======
+@CrossOrigin("*")
+
+>>>>>>> 5061d4c16581edbb3ad5d74c854640eaa8f5bd15
 public class CustomerController {
 	@Autowired
 	CustomerService customerService;
@@ -42,11 +48,13 @@ public class CustomerController {
 		return new ResponseEntity<>(customer2, HttpStatus.OK);
 	}
 
+	
 	@PutMapping("/customerUpdate")
 	public ResponseEntity<Customer> updateCustmerHandller(@Valid @RequestBody Customer customer,@RequestParam("Session Key") String key) {
 		Customer customer2 = customerService.updateCustomer(customer,key);
 		return new ResponseEntity<>(customer2, HttpStatus.OK);
 	}
+	
 
 	@GetMapping("/customerGet/{id}")
 	public ResponseEntity<Customer> getCustmerByIdHandller(@Valid @PathVariable Integer id) {

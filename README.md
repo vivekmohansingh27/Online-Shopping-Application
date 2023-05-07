@@ -21,11 +21,19 @@ Overall, this Online Shopping Application is a simple and easy-to-use platform t
 
 
 # Tech Stack
+ # Backend
+  
   1. Java Core
   2. MySql
   3. Maven
   4. SpringBoot
   
+ # Frontend
+
+  1. HTML
+  2. CSS
+  3. BOOTSTRAP
+  4. JAVASCRIPT
 # Features:-
   
   # Customer Module
