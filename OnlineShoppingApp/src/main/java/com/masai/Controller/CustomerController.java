@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,10 @@ import com.masai.model.Customer;
 
 import jakarta.validation.Valid;
 
+
 @RestController
+@CrossOrigin("*")
+
 public class CustomerController {
 	@Autowired
 	CustomerService customerService;
@@ -40,11 +44,13 @@ public class CustomerController {
 		return new ResponseEntity<>(customer2, HttpStatus.OK);
 	}
 
+	
 	@PutMapping("/customerUpdate")
 	public ResponseEntity<Customer> updateCustmerHandller(@Valid @RequestBody Customer customer,@RequestParam("Session Key") String key) {
 		Customer customer2 = customerService.updateCustomer(customer,key);
 		return new ResponseEntity<>(customer2, HttpStatus.OK);
 	}
+	
 
 	@GetMapping("/customerGet/{id}")
 	public ResponseEntity<Customer> getCustmerByIdHandller(@Valid @PathVariable Integer id) {
