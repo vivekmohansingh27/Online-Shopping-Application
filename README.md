@@ -11,7 +11,9 @@ The application is built using Spring Boot and follows the Model-View-Controller
 The application uses POJO classes to represent the entities in the system. The classes include Customer, Admin, Product, Order, and Cart. The service layer is designed using interfaces, such as CustomerService and AdminService, to provide separation between the business logic and the controller layer.
 
 Overall, this Online Shopping Application is a simple and easy-to-use platform that allows customers to shop online and admins to manage the products in the store.
--ER
+-ER DIAGRAM
+
+![ERDIAGRAM](https://user-images.githubusercontent.com/71522419/236664589-b3302ac1-f1bc-4010-9bdc-80f90c69b7d7.png)
 
 
 <br/>
