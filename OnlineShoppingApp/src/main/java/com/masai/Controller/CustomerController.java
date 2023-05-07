@@ -23,12 +23,7 @@ import jakarta.validation.Valid;
 
 
 @RestController
-<<<<<<< HEAD
-@CrossOrigin(origins = "*")
-=======
 @CrossOrigin("*")
-
->>>>>>> 5061d4c16581edbb3ad5d74c854640eaa8f5bd15
 public class CustomerController {
 	@Autowired
 	CustomerService customerService;

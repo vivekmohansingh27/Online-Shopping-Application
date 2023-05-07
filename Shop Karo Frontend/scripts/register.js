@@ -45,6 +45,7 @@ function postReq() {
     if (response.status >= 200 && response.status <= 299) {
       alert("Customer added Succesfully !");
       window.location.href = "login.html";
+      
     } else {
       response.json().then((data) => {
         if (

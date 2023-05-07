@@ -16,8 +16,8 @@
         <div class="col-lg-10 mt-5">
           <!-- personal details card -->
           <div class="card" style="width: 30rem">
-            <img
-              src="https://plus.unsplash.com/premium_photo-1661448623542-eb6ec42ec5b2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80"
+            <img id="image"
+              src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1683487572~exp=1683488172~hmac=6fdef045f7f96ca92dbc290ebcd0d3ba132e777e016002fe694db1575c6cf598"
               class="card-img-top"
               alt="..."
             />
@@ -29,10 +29,10 @@
               </p>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Name</li>
-              <li class="list-group-item">Address</li>
-              <li class="list-group-item">Mobile Number</li>
-              <li class="list-group-item">Email</li>
+              <li id="name" class="list-group-item">Name</li>
+              <li id="address" class="list-group-item">Address</li>
+              <li id="mobile" class="list-group-item">Mobile Number</li>
+              <li id="email" class="list-group-item">Email</li>
             </ul>
             <div class="card-body">
               <a href="#" class="card-link">Card link</a>
@@ -52,7 +52,7 @@
                   type="text"
                   readonly
                   class="form-control-plaintext"
-                  id="staticEmail"
+                  id="uemail"
                   value="email@example.com"
                 />
               </div>
@@ -63,9 +63,9 @@
               >
               <div class="col-sm-8">
                 <input
-                  type="password"
+                  type="text"
                   class="form-control"
-                  id="inputPassword"
+                  id="umobile"
                 />
               </div>
             </div>
@@ -75,18 +75,19 @@
               >
               <div class="col-sm-8">
                 <input
-                  type="password"
+                  type="text"
                   class="form-control"
-                  id="inputPassword"
+                  id="uname"
                 />
               </div>
             </div>
             <button
               name=""
-              id=""
+              id="ubutton"
               class="btn btn-primary"
               href="#"
               role="button"
+              
             >
               Update Details
             </button>
@@ -96,37 +97,37 @@
           <div class="card">
             <h5 class="card-header">Featured</h5>
             <div class="card-body">
-              <form class="row g-3 needs-validation" novalidate>
+              <div  class="row g-3 needs-validation" novalidate>
                 <h1 class="display-3">Edit Address</h1>
 
                 <div class="col-md-4">
-                  <label for="validationCustom01" class="form-label"
+                  <label  for="validationCustom01" class="form-label"
                     >street name</label
                   >
                   <input
                     type="text"
                     class="form-control"
-                    id="validationCustom01"
+                    id="ustreetname"
                     value="Mark"
                     required
                   />
                   <div class="valid-feedback">Looks good!</div>
                 </div>
                 <div class="col-md-4">
-                  <label for="validationCustom02" class="form-label"
+                  <label  for="validationCustom02" class="form-label"
                     >building name</label
                   >
                   <input
                     type="text"
                     class="form-control"
-                    id="validationCustom02"
+                    id="ubuilding"
                     value="Otto"
                     required
                   />
                   <div class="valid-feedback">Looks good!</div>
                 </div>
                 <div class="col-md-4">
-                  <label for="validationCustomUsername" class="form-label"
+                  <label  for="validationCustomUsername" class="form-label"
                     >city</label
                   >
                   <div class="input-group has-validation">
@@ -137,7 +138,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="validationCustomUsername"
+                      id="ucity"
                       aria-describedby="inputGroupPrepend"
                       required
                     />
@@ -147,13 +148,13 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <label for="validationCustom03" class="form-label"
+                  <label  for="validationCustom03" class="form-label"
                     >State</label
                   >
                   <input
                     type="text"
                     class="form-control"
-                    id="validationCustom03"
+                    id="ustate"
                     required
                   />
                   <div class="invalid-feedback">
@@ -162,11 +163,11 @@
                 </div>
 
                 <div class="col-md-3">
-                  <label for="validationCustom05" class="form-label">Zip</label>
+                  <label  for="validationCustom05" class="form-label">Zip</label>
                   <input
                     type="text"
                     class="form-control"
-                    id="validationCustom05"
+                    id="upincode"
                     required
                   />
                   <div class="invalid-feedback">
@@ -191,11 +192,11 @@
                   </div>
                 </div>
                 <div class="col-12">
-                  <button class="btn btn-primary" type="submit">
+                  <button id="uaddress" class="btn btn-primary" type="submit">
                     Submit form
                   </button>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
           <!-- address update form -->

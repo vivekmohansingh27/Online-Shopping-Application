@@ -87,8 +87,8 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		customer2.get().setAddress(customer.getAddress());
 			
-		Customer customer3 = customerRepo.save(customer2.get());
-		return customer3;
+		 
+		return customerRepo.save(customer);
 	}
 
 	@Override
