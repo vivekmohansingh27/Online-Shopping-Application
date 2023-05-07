@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ShopKaro</title>
+    <link
+      rel="stylesheet"
+      href="./bootstrap-5.3.0-alpha3-dist copy/css/bootstrap.min.css"
+    />
+  </head>
+  <body style="padding-top: 70px">
+    <!-- 
+
+
+     -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Sign Up</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="./index.html"
+              >Home</a
+            >
+            <a class="nav-link" href="./register.html">Register</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- 
+
+
+     -->
+    <div class="container-lg !direction !spacing">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label for="validationServer01" class="form-label">First name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="firstName"
+            value=""
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationServer02" class="form-label">Last name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            value=""
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationServerUsername" class="form-label"
+            >Username</label
+          >
+          <div class="input-group has-validation">
+            <span class="input-group-text" id="inputGroupPrepend3">@</span>
+            <input
+              type="text"
+              class="form-control"
+              id="email"
+              aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback"
+              required
+            />
+            <div id="validationServerUsernameFeedback" class="valid-feedback">
+              Please choose a username.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationServer03" class="form-label">City</label>
+          <input
+            type="text"
+            class="form-control"
+            id="city"
+            aria-describedby="validationServer03Feedback"
+            required
+          />
+          <div id="validationServer03Feedback" class="">
+            Please provide a valid city.
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label for="validationServer04" class="form-label">State</label>
+          <select
+            class="form-select"
+            id="state"
+            aria-describedby="validationServer04Feedback"
+            required
+          >
+            <option selected disabled value="">Choose...</option>
+            <option>Maharashtra</option>
+            <option>keral</option>
+            <option>Utter Pradesh</option>
+            <option>Madhya Pradesh</option>
+            <option>Karnataka</option>
+            <option>Goa</option>
+            <option>Zarkhand</option>
+          </select>
+          <div id="validationServer04Feedback" class="">
+            Please select a valid state.
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label for="validationServer05" class="form-label">Zip</label>
+          <input
+            type="text"
+            class="form-control"
+            id="pincode"
+            aria-describedby="validationServer05Feedback"
+            required
+          />
+          <div id="validationServer05Feedback" class="">
+            Please provide a valid zip.
+          </div>
+        </div>
+        <!--  -->
+
+        <div class="col-md-4">
+          <label for="validationServer01" class="form-label">Mobile number</label>
+          <input
+            type="text"
+            class="form-control"
+            id="mobileNumber"
+            value=""
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationServer02" class="form-label">Street Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="streetName"
+            value=""
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationServerUsername" class="form-label"
+            >Building Name</label
+          >
+          <div class="input-group has-validation">
+            <input
+              type="text"
+              class="form-control"
+              id="buildingName"
+              aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback"
+              required
+            />
+            <div id="validationServerUsernameFeedback" class="valid-feedback">
+              Please choose a username.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationServer01" class="form-label">country</label>
+          <input
+            type="text"
+            class="form-control"
+            id="country"
+            value=""
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationServer02" class="form-label">Password</label>
+          <input
+            type="text"
+            class="form-control"
+            id="password"
+            value=""
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+
+        <!--  -->
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-sm"
+            >Image Link</span
+          >
+          <input
+            type="text"
+            id="image"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="invalidCheck3"
+              aria-describedby="invalidCheck3Feedback"
+              required
+            />
+            <label class="form-check-label" for="invalidCheck3">
+              Agree to terms and conditions
+            </label>
+            <div id="invalidCheck3Feedback" class="">
+              You must agree before submitting.
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit" id="submit">
+            Submit form
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="./bootstrap-5.3.0-alpha3-dist copy/js/bootstrap.bundle.min.js"></script>
+<script src="./scripts/register.js" type="module"></script>

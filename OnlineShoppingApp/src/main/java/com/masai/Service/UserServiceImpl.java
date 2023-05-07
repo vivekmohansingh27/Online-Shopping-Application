@@ -25,12 +25,12 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserSession session;
-	
-	@Autowired 
+
+	@Autowired
 	private AdminRepository adminRepo;
 
 	@Override
-	public String loginToAccount(User user) {
+	public CurrentUserSession loginToAccount(User user) {
 		if (user.getType().equalsIgnoreCase("customer")) {
 			Customer customer = customerRepo.findByMobileNumber(user.getUserId());
 			if (customer == null)
@@ -46,50 +46,46 @@ public class UserServiceImpl implements UserService {
 				CurrentUserSession currentUserSession = new CurrentUserSession(customer.getCustomerId(), key,
 						LocalDateTime.now());
 
-				session.save(currentUserSession);
-
-				return currentUserSession.toString();
+				return session.save(currentUserSession);
 			} else {
 				throw new UserException("Please Provide valid password");
 			}
-		}else if (user.getType().equalsIgnoreCase("admin")) {
+		} else if (user.getType().equalsIgnoreCase("admin")) {
 			Admin admin = adminRepo.findByEmail(user.getUserId());
-			
-			if(admin == null) {
+
+			if (admin == null) {
 				throw new AdminException("Admin with this email id does not exists");
 			}
-			
-			Optional<CurrentUserSession> optional= session.findById(admin.getId());
-			
-			if(optional.isPresent()) {
+
+			Optional<CurrentUserSession> optional = session.findById(admin.getId());
+
+			if (optional.isPresent()) {
 				throw new AdminException("Admin is already Logged In");
 			}
-			
-			if(admin.getPassword().equalsIgnoreCase(user.getPassword())) {
-				String key= RandomString.make(6);
-				
-				CurrentUserSession currentUserSession= new CurrentUserSession(admin.getId(), key, LocalDateTime.now());
-				
-				session.save(currentUserSession);
-				return currentUserSession.toString();
-				
-			}else {
+
+			if (admin.getPassword().equalsIgnoreCase(user.getPassword())) {
+				String key = RandomString.make(6);
+
+				CurrentUserSession currentUserSession = new CurrentUserSession(admin.getId(), key, LocalDateTime.now());
+
+				return session.save(currentUserSession);
+
+			} else {
 				throw new UserException("Wrong password ");
 
 			}
-		} else { 
+		} else {
 			throw new UserException("Invalid User detailes ");
 		}
-		
-			
 
 	}
 
 	@Override
 	public String logOutFromAccount(String key) {
 		CurrentUserSession currentUserSession = session.findByUuid(key);
-		if(currentUserSession.equals(null)) throw new UserException("User is not Logged In with this number");
-		
+		if (currentUserSession.equals(null))
+			throw new UserException("User is not Logged In with this number");
+
 		session.delete(currentUserSession);
 		return "Logged Out Successfully !";
 	}

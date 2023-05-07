@@ -34,7 +34,7 @@ import lombok.ToString;
 public class Customer {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer customerId;
 	@Size(min = 3, max = 15)
 	@NotBlank
@@ -42,6 +42,9 @@ public class Customer {
 	@Size(min = 3, max = 15)
 	@NotBlank
 	private String lastName;
+	
+	
+	private String image;
 
 	@NotNull
 	@Pattern(regexp = "[6789][0-9]{9}")

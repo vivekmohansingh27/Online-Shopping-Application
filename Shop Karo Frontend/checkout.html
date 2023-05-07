@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ShopKaro</title>
+    <link
+      rel="stylesheet"
+      href="./bootstrap-5.3.0-alpha3-dist copy/css/bootstrap.min.css"
+    />
+  </head>
+  <body style="padding-top: 70px">
+    <div id="navbar"></div>
+    <div class="container-lg">
+      <div class="row justify-content-center align-items-center g-2">
+        <div class="col-md-10">
+          <!-- 
+
+                first
+
+             -->
+          <p>
+            <button
+              class="btn"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#first"
+              aria-expanded="false"
+              aria-controls="collapseWidthExample"
+            >
+              Select a delivery address
+            </button>
+          </p>
+          <div style="min-height: 120px">
+            <div class="collapse collapse-horizontal" id="first">
+              <div class="card card-body" style="width: 300px">
+                This is some placeholder content for a horizontal collapse. It's
+                hidden by default and shown when triggered.
+
+                <button type="button" class="btn btn-warning">
+                  use this address
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- 
+
+            second
+
+           -->
+          <p>
+            <button
+              class="btn"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#second"
+              aria-expanded="false"
+              aria-controls="collapseWidthExample"
+            >
+              Payment method
+            </button>
+          </p>
+          <div style="min-height: 120px">
+            <div class="collapse collapse-horizontal" id="second">
+              <div class="card card-body" style="width: 300px">
+                This is some placeholder content for a horizontal collapse. It's
+                hidden by default and shown when triggered.
+
+                <button type="button" class="btn btn-warning">Warning</button>
+              </div>
+            </div>
+          </div>
+          <!-- 
+
+            third
+
+           -->
+          <p>
+            <button
+              class="btn"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#third"
+              aria-expanded="false"
+              aria-controls="collapseWidthExample"
+            >
+              Items and delivery
+            </button>
+          </p>
+          <div style="min-height: 120px">
+            <div class="collapse collapse-horizontal" id="third">
+              <div class="card card-body" style="width: 300px">
+                This is some placeholder content for a horizontal collapse. It's
+                hidden by default and shown when triggered.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="./bootstrap-5.3.0-alpha3-dist copy/js/bootstrap.bundle.min.js"></script>
+<script src="./scripts/checkout.js" type="module"></script>
+<script src="./scripts/navlink.js" type="module"></script>

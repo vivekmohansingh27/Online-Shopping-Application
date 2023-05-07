@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ShopKaro</title>
+    <link
+      rel="stylesheet"
+      href="./bootstrap-5.3.0-alpha3-dist copy/css/bootstrap.min.css"
+    />
+  </head>
+  <body style="padding-top: 70px">
+    <div id="navbar"></div>
+    <div class="container-lg">
+      <div class="row justify-content-center align-items-center g-2">
+        <div class="col-lg-3">
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+        <!-- 
+
+
+          use id = productAppend 
+          div to append all products
+
+
+         -->
+        <div class="col-md-10" id="productAppend">
+          <!-- 
+
+
+
+            use bellow entire card 
+
+
+           -->
+          <div class="card" style="width: 18rem">
+            <img
+              src="https://images.unsplash.com/photo-1604268728238-7e43df92858e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=327&q=80"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <button href="#" class="btn btn-primary">Add to Cart</button>
+              <button href="#" class="btn btn-primary">Buy Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="./bootstrap-5.3.0-alpha3-dist copy/js/bootstrap.bundle.min.js"></script>
+<script src="./scripts/product.js" type="module"></script>
+<script src="./scripts/navlink.js" type="module"></script>
