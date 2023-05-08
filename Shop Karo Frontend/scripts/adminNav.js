@@ -21,7 +21,7 @@ function adminNav() {
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="products">Products</a>
+            <a class="nav-link" id="products" >Products</a>
           </li>
           <li class="nav-item">
             <button type="button" id="logout-btn" class="btn button-33">Log Out</button>

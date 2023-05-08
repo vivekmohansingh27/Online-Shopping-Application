@@ -8,7 +8,7 @@ nav.innerHTML = navbar();
 
 
 function logout() {
-    let sessionid = JSON.parse(sessionStorage.getItem("admin"));
+    let sessionid = JSON.parse(localStorage.getItem("admin"));
     var requestOptions = {
       method: "POST",
       redirect: "follow",
