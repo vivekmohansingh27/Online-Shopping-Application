@@ -9,8 +9,7 @@
       href="./bootstrap-5.3.0-alpha3-dist copy/css/bootstrap.min.css"
     />
 
-    <link rel="stylesheet" href="./styles/common.css">
-
+    <link rel="stylesheet" href="./styles/common.css" />
 
     <style>
       table {
@@ -19,26 +18,25 @@
         max-width: 800px;
         margin: 0 auto;
       }
-  
-      th, td {
+
+      th,
+      td {
         padding: 8px;
         text-align: left;
         border-bottom: 1px solid #ddd;
       }
-  
+
       th {
         background-color: #f2f2f2;
         font-weight: bold;
       }
-  
+
       img {
         display: block;
         max-width: 100%;
         height: auto;
       }
     </style>
-
-
   </head>
   <body style="padding-top: 70px">
     <div id="navbar"></div>
@@ -62,26 +60,15 @@
             <img src="./images/addProduct.jpg" class="card-img-top" alt="..." />
             <div class="card-body">
               <h5 class="card-title display-3">Add Product</h5>
-              <hr>
-<!-- 
-              "productId": 0,
-              "productName": "string",
-              "image": "string",
-              "price": 0,
-              "description": "string",
-              "manufacturer": "string",
-              "quantity": 0,
-              "category": {
-                "catId": 0,
-                "catName": "GROCERY" -->
-
+              <hr />
 
               <form class="row g-3 needs-validation" novalidate>
                 <div class="col-md-4">
                   <label for="validationCustom01" class="form-label"
                     >Product Name</label
                   >
-                  <input id="product_name"
+                  <input
+                    id="product_name"
                     type="text"
                     class="form-control"
                     id="validationCustom01"
@@ -94,7 +81,8 @@
                   <label for="validationCustom02" class="form-label"
                     >Product Image</label
                   >
-                  <input id="product_image"
+                  <input
+                    id="product_image"
                     type="text"
                     class="form-control"
                     id="validationCustom02"
@@ -104,34 +92,30 @@
                   <!-- <div class="valid-feedback">Looks good!</div> -->
                 </div>
 
-
                 <div class="col-md-4">
                   <label for="validationCustomUsername" class="form-label"
                     >Price</label
                   >
                   <div class="input-group has-validation">
-                    <span class="input-group-text" id="price"
-                      >₹</span
-                    >
-                    <input id="product_price"
+                    <span class="input-group-text" id="price">₹</span>
+                    <input
+                      id="product_price"
                       type="text"
                       class="form-control"
                       id="validationCustomUsername"
                       aria-describedby="inputGroupPrepend"
                       required
                     />
-                    <div class="invalid-feedback">
-                      Price
-                    </div>
+                    <div class="invalid-feedback">Price</div>
                   </div>
                 </div>
-
 
                 <div class="col-md-6">
                   <label for="validationCustom03" class="form-label"
                     >Description</label
                   >
-                  <input id="product_desc"
+                  <input
+                    id="product_desc"
                     type="text"
                     class="form-control"
                     id="validationCustom03"
@@ -142,26 +126,28 @@
                   </div>
                 </div>
 
-
                 <div class="col-md-3">
                   <label for="validationCustom04" class="form-label"
                     >Manufacturer</label
                   >
-                  <input id="product_manufac"
-                  type="text"
-                  class="form-control"
-                  id="validationCustom03"
-                  required
+                  <input
+                    id="product_manufac"
+                    type="text"
+                    class="form-control"
+                    id="validationCustom03"
+                    required
                   />
                   <div class="invalid-feedback">
                     Please select a valid Manufacture.
                   </div>
                 </div>
 
-
                 <div class="col-md-3">
-                  <label for="validationCustom05" class="form-label">Quantity</label>
-                  <input id="product_quantity"
+                  <label for="validationCustom05" class="form-label"
+                    >Quantity</label
+                  >
+                  <input
+                    id="product_quantity"
                     type="text"
                     class="form-control"
                     id="validationCustom05"
@@ -173,7 +159,9 @@
                 </div>
 
                 <div class="col-md-3">
-                  <label for="validationCustom05" class="form-label">Category</label>
+                  <label for="validationCustom05" class="form-label"
+                    >Category</label
+                  >
 
                   <select class="form-select" id="validationCustom04" required>
                     <option selected disabled value="">SELECT</option>
@@ -189,343 +177,327 @@
                   </div>
                 </div>
 
-
-
                 <div class="col-md-3">
-                  <label for="validationCustom05" class="form-label">Category Id</label>
-              
+                  <label for="validationCustom05" class="form-label"
+                    >Category Id</label
+                  >
+
                   <select class="form-select" id="validationCustom05" required>
-                    <option selected disabled value="">SELECT CATEGORY ID</option>
+                    <option selected disabled value="">
+                      SELECT CATEGORY ID
+                    </option>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
                     <option>4</option>
                     <option>5</option>
                   </select>
-              
+
                   <div class="invalid-feedback">
                     <!-- Please provide a valid zip. -->
                   </div>
                 </div>
 
-                
                 <div class="col-12">
                   <button class="btn btn-primary" type="submit" id="addProduct">
                     ADD PRODUCT
                   </button>
                 </div>
               </form>
-              
             </div>
           </div>
         </div>
-        
 
+        <!-- /////////////////update product/////////////////////////// -->
 
+        <h5 class="card-title display-3">Update Product</h5>
+        <hr />
 
+        <form class="row g-3 needs-validation" novalidate>
+          <div class="col-md-3">
+            <label for="validationCustom05" class="form-label">ProductID</label>
+            <input
+              id="productId"
+              type="text"
+              class="form-control"
+              id="validationCustom05"
+              required
+            />
+            <div class="invalid-feedback">
+              <!-- Please provide a valid zip. -->
+            </div>
+          </div>
 
+          <div class="col-md-4">
+            <label for="validationCustom01" class="form-label"
+              >Product Name</label
+            >
+            <input
+              id="update_product_name"
+              type="text"
+              class="form-control"
+              id="validationCustom01"
+              value=""
+              required
+            />
+            <!-- <div class="valid-feedback">Looks good!</div> -->
+          </div>
 
-        
-<!-- /////////////////update product/////////////////////////// -->
+          <div class="col-md-4">
+            <label for="validationCustom02" class="form-label"
+              >Product Image</label
+            >
+            <input
+              id="update_product_image"
+              type="text"
+              class="form-control"
+              id="validationCustom02"
+              value=""
+              required
+            />
+            <!-- <div class="valid-feedback">Looks good!</div> -->
+          </div>
 
+          <div class="col-md-4">
+            <label for="validationCustomUsername" class="form-label"
+              >Price</label
+            >
+            <div class="input-group has-validation">
+              <span class="input-group-text" id="price">₹</span>
+              <input
+                id="update_product_price"
+                type="text"
+                class="form-control"
+                id="validationCustomUsername"
+                aria-describedby="inputGroupPrepend"
+                required
+              />
+              <div class="invalid-feedback">Price</div>
+            </div>
+          </div>
 
-<h5 class="card-title display-3">Update Product</h5>
-<hr>
+          <div class="col-md-6">
+            <label for="validationCustom03" class="form-label"
+              >Description</label
+            >
+            <input
+              id="update_product_desc"
+              type="text"
+              class="form-control"
+              id="validationCustom03"
+              required
+            />
+            <div class="invalid-feedback">
+              <!-- Please provide a valid city. -->
+            </div>
+          </div>
 
+          <div class="col-md-3">
+            <label for="validationCustom04" class="form-label"
+              >Manufacturer</label
+            >
+            <input
+              id="update_product_manufac"
+              type="text"
+              class="form-control"
+              id="validationCustom03"
+              required
+            />
+            <div class="invalid-feedback">
+              Please select a valid Manufacture.
+            </div>
+          </div>
 
-<form class="row g-3 needs-validation" novalidate>
+          <div class="col-md-3">
+            <label for="validationCustom05" class="form-label">Quantity</label>
+            <input
+              id="update_product_quantity"
+              type="text"
+              class="form-control"
+              id="validationCustom05"
+              required
+            />
+            <div class="invalid-feedback">
+              <!-- Please provide a valid zip. -->
+            </div>
+          </div>
 
-  <div class="col-md-3">
-    <label for="validationCustom05" class="form-label">ProductID</label>
-    <input id="productId"
-      type="text"
-      class="form-control"
-      id="validationCustom05"
-      required
-    />
-    <div class="invalid-feedback">
-      <!-- Please provide a valid zip. -->
-    </div>
-  </div>
+          <div class="col-md-3">
+            <label for="validationCustom05" class="form-label">Category</label>
 
+            <select class="form-select" id="validationCustom04up" required>
+              <option selected disabled value="">SELECT</option>
+              <option>GROCERY</option>
+              <option>ELECTRONICS</option>
+              <option>CLOTH</option>
+              <option>FOOTWEAR</option>
+              <option>STATIONARY</option>
+            </select>
 
-  <div class="col-md-4">
-    <label for="validationCustom01" class="form-label"
-      >Product Name</label
-    >
-    <input id="update_product_name"
-      type="text"
-      class="form-control"
-      id="validationCustom01"
-      value=""
-      required
-    />
-    <!-- <div class="valid-feedback">Looks good!</div> -->
-  </div>
+            <div class="invalid-feedback">
+              <!-- Please provide a valid zip. -->
+            </div>
+          </div>
 
-  
+          <div class="col-md-3">
+            <label for="validationCustom05" class="form-label"
+              >Category Id</label
+            >
 
+            <select class="form-select" id="validationCustom05id" required>
+              <option selected disabled value="">SELECT CATEGORY ID</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
 
+            <div class="invalid-feedback">
+              <!-- Please provide a valid zip. -->
+            </div>
+          </div>
 
-  <div class="col-md-4">
-    <label for="validationCustom02" class="form-label"
-      >Product Image</label
-    >
-    <input id="update_product_image"
-      type="text"
-      class="form-control"
-      id="validationCustom02"
-      value=""
-      required
-    />
-    <!-- <div class="valid-feedback">Looks good!</div> -->
-  </div>
-
-
-  <div class="col-md-4">
-    <label for="validationCustomUsername" class="form-label"
-      >Price</label
-    >
-    <div class="input-group has-validation">
-      <span class="input-group-text" id="price"
-        >₹</span
-      >
-      <input id="update_product_price"
-        type="text"
-        class="form-control"
-        id="validationCustomUsername"
-        aria-describedby="inputGroupPrepend"
-        required
-      />
-      <div class="invalid-feedback">
-        Price
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit" id="updateProduct">
+              UPDATE PRODUCT
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-  </div>
 
-
-  <div class="col-md-6">
-    <label for="validationCustom03" class="form-label"
-      >Description</label
-    >
-    <input id="update_product_desc"
-      type="text"
-      class="form-control"
-      id="validationCustom03"
-      required
-    />
-    <div class="invalid-feedback">
-      <!-- Please provide a valid city. -->
-    </div>
-  </div>
-
-
-  <div class="col-md-3">
-    <label for="validationCustom04" class="form-label"
-      >Manufacturer</label
-    >
-    <input id="update_product_manufac"
-    type="text"
-    class="form-control"
-    id="validationCustom03"
-    required
-    />
-    <div class="invalid-feedback">
-      Please select a valid Manufacture.
-    </div>
-  </div>
-
-
-  <div class="col-md-3">
-    <label for="validationCustom05" class="form-label">Quantity</label>
-    <input id="update_product_quantity"
-      type="text"
-      class="form-control"
-      id="validationCustom05"
-      required
-    />
-    <div class="invalid-feedback">
-      <!-- Please provide a valid zip. -->
-    </div>
-  </div>
-
-  <div class="col-md-3">
-    <label for="validationCustom05" class="form-label">Category</label>
-
-    <select class="form-select" id="validationCustom04up" required>
-      <option selected disabled value="">SELECT</option>
-      <option>GROCERY</option>
-      <option>ELECTRONICS</option>
-      <option>CLOTH</option>
-      <option>FOOTWEAR</option>
-      <option>STATIONARY</option>
-    </select>
-
-    <div class="invalid-feedback">
-      <!-- Please provide a valid zip. -->
-    </div>
-  </div>
-
-
-  <div class="col-md-3">
-    <label for="validationCustom05" class="form-label">Category Id</label>
-
-    <select class="form-select" id="validationCustom05id" required>
-      <option selected disabled value="">SELECT CATEGORY ID</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-
-    <div class="invalid-feedback">
-      <!-- Please provide a valid zip. -->
-    </div>
-  </div>
-
-
-  
-  <div class="col-12">
-    <button class="btn btn-primary" type="submit" id="updateProduct">
-      UPDATE PRODUCT
-    </button>
-  </div>
-</form>
-
-</div>
-</div>
-</div>
-
-
-<!-- /////////////////////////////////////////////////////// -->
-
-
-
-
-
-
-
-        
-        <div class="col-lg-12">
-          <div class="card">
-            <h1 class="display-3 card-header">Add Category</h1>
-            <div class="card-body">
-              <form class="row g-3 needs-validation" novalidate>
-                <div class="col-md-4">
-                  <label for="validationCustom01" class="form-label">First name</label>
-                  <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-                  <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <label for="validationCustom02" class="form-label">Last name</label>
-                  <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
-                  <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <label for="validationCustomUsername" class="form-label">Username</label>
-                  <div class="input-group has-validation">
-                    <span class="input-group-text" id="inputGroupPrepend">@</span>
-                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                    <div class="invalid-feedback">
-                      Please choose a username.
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <label for="validationCustom03" class="form-label">City</label>
-                  <input type="text" class="form-control" id="validationCustom03" required>
-                  <div class="invalid-feedback">
-                    Please provide a valid city.
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <label for="validationCustom04" class="form-label">State</label>
-                  <select class="form-select" id="validationCustom04" required>
-                    <option selected disabled value="">Choose...</option>
-                    <option>...</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Please select a valid state.
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <label for="validationCustom05" class="form-label">Zip</label>
-                  <input type="text" class="form-control" id="validationCustom05" required>
-                  <div class="invalid-feedback">
-                    Please provide a valid zip.
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                    <label class="form-check-label" for="invalidCheck">
-                      Agree to terms and conditions
-                    </label>
-                    <div class="invalid-feedback">
-                      You must agree before submitting.
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <button class="btn btn-primary" type="submit">Submit form</button>
-                </div>
-              </form>
+    <div class="col-lg-12">
+      <div class="card">
+        <h1 class="display-3 card-header">Add Category</h1>
+        <div class="card-body">
+          <form class="row g-3 needs-validation" novalidate>
+            <div class="col-md-4">
+              <label for="validationCustom01" class="form-label"
+                >First name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="validationCustom01"
+                value="Mark"
+                required
+              />
+              <div class="valid-feedback">Looks good!</div>
             </div>
-          </div>
-
-
-          
-          
+            <div class="col-md-4">
+              <label for="validationCustom02" class="form-label"
+                >Last name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="validationCustom02"
+                value="Otto"
+                required
+              />
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="col-md-4">
+              <label for="validationCustomUsername" class="form-label"
+                >Username</label
+              >
+              <div class="input-group has-validation">
+                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="validationCustomUsername"
+                  aria-describedby="inputGroupPrepend"
+                  required
+                />
+                <div class="invalid-feedback">Please choose a username.</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="validationCustom03" class="form-label">City</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationCustom03"
+                required
+              />
+              <div class="invalid-feedback">Please provide a valid city.</div>
+            </div>
+            <div class="col-md-3">
+              <label for="validationCustom04" class="form-label">State</label>
+              <select class="form-select" id="validationCustom04" required>
+                <option selected disabled value="">Choose...</option>
+                <option>...</option>
+              </select>
+              <div class="invalid-feedback">Please select a valid state.</div>
+            </div>
+            <div class="col-md-3">
+              <label for="validationCustom05" class="form-label">Zip</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationCustom05"
+                required
+              />
+              <div class="invalid-feedback">Please provide a valid zip.</div>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="invalidCheck"
+                  required
+                />
+                <label class="form-check-label" for="invalidCheck">
+                  Agree to terms and conditions
+                </label>
+                <div class="invalid-feedback">
+                  You must agree before submitting.
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-primary" type="submit">Submit form</button>
+            </div>
+          </form>
         </div>
-        <!-- 
+      </div>
+    </div>
+    <!-- 
 
           view all customers
           view products 
           view category
 
          -->
-         <div class="container-lg">
-          <div class="row justify-content-center align-items-center g-2">
+    <div class="container-lg">
+      <div class="row justify-content-center align-items-center g-2">
+        <div class="col-lg-12">
+          <button id="viewProducts">View Product</button>
 
-            <div class="col-lg-12">
-              <button id="viewProducts">View Product</button>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Manufacturer</th>
+                <th>Quantity</th>
+                <th>Category</th>
+              </tr>
+            </thead>
+            <tbody id="product-list"></tbody>
+          </table>
+        </div>
 
-              <table>
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Image</th>
-                    <th>Price</th>
-                    <th>Description</th>
-                    <th>Manufacturer</th>
-                    <th>Quantity</th>
-                    <th>Category</th>
-                  </tr>
-                </thead>
-                <tbody id="product-list">
-                </tbody>
-              </table>
-
-            </div>
-
-
-            <div class="col-lg-12">
-              <button id="viewCustomers">View Customers</button>
-            </div>
-
- 
- 
-
-            
-          </div>
-         </div>
-
+        <div class="col-lg-12">
+          <button id="viewCustomers">View Customers</button>
+        </div>
       </div>
     </div>
   </body>
