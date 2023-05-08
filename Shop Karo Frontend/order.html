@@ -8,8 +8,7 @@
       rel="stylesheet"
       href="./bootstrap-5.3.0-alpha3-dist copy/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="./styles/common.css">
-
+    <link rel="stylesheet" href="./styles/common.css" />
   </head>
   <body style="padding-top: 70px">
     <div id="navbar"></div>
@@ -28,8 +27,22 @@
             </button>
           </form>
         </div>
-        <div class="col-md-10">Column</div>
-        <div class="col-md-10">Column</div>
+        <div class="col-md-10">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Order ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Order Status</th>
+              </tr>
+            </thead>
+            <tbody id="order-list">
+             
+            </tbody>
+          </table>
+        </div>
+       
       </div>
     </div>
   </body>

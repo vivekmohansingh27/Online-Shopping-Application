@@ -22,5 +22,48 @@
 <td>${product.quantity}</td>
 <td>${product.category.catName}</td>
 
+<div class="row g-0">
+  <div class="col-md-4">
+    <img src="${product.image}" class="img-fluid rounded-start" alt="..." />
+  </div>
+  <div class="col-md-8">
+    <div class="card-body">
+      <h5 class="card-title">${product.productName}</h5>
+      <p class="card-text">${product.price}</p>
+      <p class="card-text"></p>
+      <p>${product.description}</p>
+      <p class="card-text">${product.manufacturer}</p>
+      <p class="card-text">${product.quantity}</p>
+      <p class="card-text">${product.category.catName}</p>
+      <button type="button" class="btn btn-outline-dark">-</button>
+      <button type="button" class="btn btn-outline-dark">+</button>
+
+      <button type="button" class="btn btn-outline-danger">Remove</button>
+    </div>
+  </div>
+</div>
 
 
+<div class="card mb-3" style="max-width: 540px">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="${product.image}" class="img-fluid rounded-start" alt="..." />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">${product.productName}</h5>
+        <p class="card-text">${product.price}</p>
+        <p class="card-text"></p>
+        <p>${product.description}</p>
+        <p class="card-text">${product.manufacturer}</p>
+        <p class="card-text">${product.quantity}</p>
+        <p class="card-text">${product.category.catName}</p>
+        <button type="button" class="btn btn-outline-dark">-</button>
+        <button type="button" class="btn btn-outline-dark">+</button>
+  
+        <button type="button" class="btn btn-outline-danger">Remove</button>
+      </div>
+    </div>
+  </div>
+  
+</div>
