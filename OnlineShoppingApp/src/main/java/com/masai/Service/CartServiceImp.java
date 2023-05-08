@@ -128,7 +128,7 @@ public class CartServiceImp implements CartService {
 		}
 
 		cart.setProduct(productList);
-
+		cRepo.save(cart);
 		return cart;
 
 	}

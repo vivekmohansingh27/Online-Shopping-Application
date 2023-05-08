@@ -141,40 +141,167 @@ function getProducts() {
   )
     .then((response) => response.json())
     .then((result) => {
-      // const products = [
-      //     {"productId":1,"productName":"dfgdfgfd","image":"Kuxbhi.com","price":55656.0,"description":"fdgdgdfgd","manufacturer":"gdgdgd","quantity":2,"category":{"catId":1,"catName":"GROCERY"}},
-      //     {"productId":2,"productName":"Nike shoes","image":"https://rukminim1.flixcart.com/image/612/612/xif0q/shoe/y/h/t/-original-imaghtdhwykgdzus.jpeg?q=70","price":2000.0,"description":"dakgdaksjgdkasgdkajgdkagjdkad","manufacturer":"Nike","quantity":20,"category":{"catId":1,"catName":"GROCERY"}}
-      //   ];
-
-      console.log(result[0]);
-
       const productList = document.getElementById("product-list");
+      productList.innerHTML = ""; // Clear the product list before repopulating it
       for (let product of result) {
-        //console.log(product)
-
         const row = document.createElement("tr");
 
         row.innerHTML = `
-              <td>${product.productId}</td>
-              <td>${product.productName}</td>
-              <td><img src="${product.image}" alt="${product.productName}" width="100"></td>
-              <td>${product.price}</td>
-              <td>${product.description}</td>
-              <td>${product.manufacturer}</td>
-              <td>${product.quantity}</td>
-              <td>${product.category.catName}</td>
-            `;
+          <td>${product.productId}</td>
+          <td>${product.productName}</td>
+          <td><img src="${product.image}" alt="${product.productName}" width="100"></td>
+          <td>${product.price}</td>
+          <td>${product.description}</td>
+          <td>${product.manufacturer}</td>
+          <td>${product.quantity}</td>
+          <td>${product.category.catName}</td>
+          <td><button class="deleteProduct" data-product-id="${product.productId}" data-session-key="${sessionid.uuid}">Delete</button></td>
+        `;
         productList.appendChild(row);
+      }
+
+      // Add event listeners to delete buttons
+      const deleteButtons = document.querySelectorAll(".deleteProduct");
+      deleteButtons.forEach((button) => {
+        button.addEventListener("click", (event) => {
+          const productId = event.target.dataset.productId;
+          const sessionKey = event.target.dataset.sessionKey;
+          deleteProduct(productId, sessionKey);
+        });
+      });
+    })
+    .catch((error) => console.log("error", error));
+}
+
+function deleteProduct(productId, sessionKey) {
+  const requestOptions = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+  };
+
+  fetch(`http://localhost:8080/admin/products/${productId}?sessionKey=${sessionKey}`, requestOptions)
+    .then((response) => {
+      if (response.ok) {
+        // Remove the product from the DOM
+        const productRow = document.querySelector(`[data-product-id="${productId}"]`).parentNode.parentNode;
+        productRow.parentNode.removeChild(productRow);
+      } else {
+        throw new Error("Failed to delete product");
       }
     })
     .catch((error) => console.log("error", error));
 }
 
-document.getElementById("viewProducts").onclick = () => {
-  getProducts();
+
+
+
+////////////////////////////////   Add Category  /////////////////////////////////////////////
+
+
+
+function addCategory(){
+  let sessionid = JSON.parse(localStorage.getItem("admin")) || null;
+
+  console.log(sessionid.uuid);
+
+  const categoryName = document.getElementById("categoryName").value.toUpperCase();
+
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var raw = JSON.stringify({
+      catId: 0,
+      catName: categoryName
+  });
+
+  var requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow",
+  };
+
+  fetch(
+    `http://localhost:8080/admin/category?sessionKey=${sessionid.uuid}`,
+    requestOptions
+  )
+    .then((response) => response.text())
+    .then((response) => {
+      if (response.status >= 200 && response.status <= 299) {
+        response.json().then((data) => {
+          console.log(data);
+          sessionStorage.setItem("customer", JSON.stringify(data));
+        });
+      }
+
+      console.log(response);
+    })
+    .catch((error) => console.log("error", error));
+
+}
+
+document.getElementById("addCategory").onclick = (event) => {
+  event.preventDefault();
+  
+  addCategory();
 };
 
-/////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////   View Customer    /////////////////////////////////////////
+
+
+function getCustomers() {
+  let sessionid = JSON.parse(localStorage.getItem("admin")) || null;
+  //console.log(sessionid.uuid);
+
+  var requestOptions = {
+    method: "GET",
+    redirect: "follow",
+  };
+
+  fetch(
+    `http://localhost:8080/customers`,
+    requestOptions
+  )
+    .then((response) => response.json())
+    .then((result) => {
+      const customerList = document.getElementById("customer-list");
+      customerList.innerHTML = ""; // Clear the product list before repopulating it
+      for (let customer of result) {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${customer.customerId}</td>
+          <td>${customer.firstName}</td>
+          <td>${customer.lastName}</td>
+          <td><img src="${customer.image}" alt="${customer.firstName}" width="100"></td>
+          <td>${customer.mobileNumber}</td>
+          <td>${customer.email}</td>
+          
+        `;
+        customerList.appendChild(row);
+      }
+
+      
+    })
+    .catch((error) => console.log("error", error));
+}
+
+
+
+
+document.getElementById("viewCustomers").onclick = () => {
+  console.log("vivek")
+  getCustomers();
+};
+
+
+
+
 
 /////////////////////// /////// ///////////////////////////////
 
@@ -189,5 +316,13 @@ window.addEventListener("load", () => {
     event.preventDefault();
     console.log("hgdksjhgd");
     updateProduct();
+
+
   };
+
+
+ 
+
+
+
 });

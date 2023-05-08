@@ -25,7 +25,7 @@ public class Product {
 	private Integer quantity;
 	
 	
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="catId")
 	private Category category;
 
