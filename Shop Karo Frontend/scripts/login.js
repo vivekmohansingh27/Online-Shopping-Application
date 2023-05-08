@@ -27,8 +27,9 @@ function postReq() {
           // Set a value in session storage
           console.log(data);
           if (role == "admin") {
-            sessionStorage.setItem("admin", JSON.stringify(data));
+            localStorage.setItem("admin", JSON.stringify(data));
             window.location.href = "admin.html";
+            
           } else {
             sessionStorage.setItem("customer", JSON.stringify(data));
             
