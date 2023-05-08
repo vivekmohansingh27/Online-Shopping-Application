@@ -1,5 +1,5 @@
 function adminNav() {
-  return `<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+  return `<nav class="navbar navbar-expand-sm bg-body-tertiary fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Admin</a>
       <button
@@ -22,6 +22,9 @@ function adminNav() {
           </li>
           <li class="nav-item">
             <a class="nav-link" id="products">Products</a>
+          </li>
+          <li class="nav-item">
+            <button type="button" id="logout-btn" class="btn button-33">Log Out</button>
           </li>
         </ul>
       </div>

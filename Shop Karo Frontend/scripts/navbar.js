@@ -1,5 +1,5 @@
 const navbar = () => {
-  return `<nav class="navbar navbar-expand-lg bg-primary fixed-top">
+  return `<nav class="navbar navbar-expand-md bg-primary fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">ShopKaro</a>
       <button
