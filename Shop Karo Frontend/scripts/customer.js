@@ -3,7 +3,6 @@ import navbar from "./navbar.js";
 let nav = document.getElementById("navbar");
 nav.innerHTML = navbar();
 
-
 function getcustomer() {
   let customer_details = JSON.parse(sessionStorage.getItem("customer_details"));
   document.getElementById("name").innerText =
@@ -89,8 +88,10 @@ function updateaddress() {
 
   let sessionid = JSON.parse(sessionStorage.getItem("customer"));
 
-  customer_details1.address.streetName =document.getElementById("ustreetname").value;
-  customer_details1.address.buildingName =document.getElementById("ubuilding").value;
+  customer_details1.address.streetName =
+    document.getElementById("ustreetname").value;
+  customer_details1.address.buildingName =
+    document.getElementById("ubuilding").value;
   customer_details1.address.city = document.getElementById("ucity").value;
   customer_details1.address.state = document.getElementById("ustate").value;
   customer_details1.address.pincode = document.getElementById("upincode").value;
@@ -145,23 +146,28 @@ function updateaddress() {
     .catch((error) => console.log("error", error));
 }
 
-function logout(){
-    let sessionid = JSON.parse(sessionStorage.getItem("customer"));
-    var requestOptions = {
-        method: 'POST',
-        redirect: 'follow'
-      };
-      
-      fetch(`http://localhost:8080/logout?key=${sessionid.uuid}`, requestOptions)
-        .then(response => response.json().then())
-        .then(result => {
-            console.log(result)
-            if (result.status >= 200 && result.status <= 299) {
-                sessionStorage.removeItem("customer")
-                sessionStorage.removeItem("customer_details")
-            }
-        })
-        .catch(error => console.log('error', error));
+function logout() {
+  let sessionid = JSON.parse(sessionStorage.getItem("customer"));
+  var requestOptions = {
+    method: "POST",
+    redirect: "follow",
+  };
+  console.log(sessionid.uuid);
+
+  fetch(`http://localhost:8080/logout?key=${sessionid.uuid}`, requestOptions)
+    .then((result) => {
+      console.log(result);
+      console.log("check p1");
+      if (result.status >= 204) {
+        result.json().then((d) => {
+          console.log("check p2");
+        });
+        sessionStorage.removeItem("customer");
+        sessionStorage.removeItem("customer_details");
+        window.location.href = "login.html";
+      }
+    })
+    .catch((error) => console.log("error", error));
 }
 
 window.addEventListener("load", () => {
@@ -175,5 +181,5 @@ window.addEventListener("load", () => {
   getcustomer();
   document.getElementById("logout-btn").onclick = () => {
     logout();
-  }
+  };
 });
