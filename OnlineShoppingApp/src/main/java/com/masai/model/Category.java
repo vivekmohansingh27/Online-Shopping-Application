@@ -27,7 +27,7 @@ public class Category {
 	private CategoryEnum catName;
 	
 	@JsonIgnore
-	@OneToMany(cascade =CascadeType.ALL,mappedBy = "category",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "category",fetch = FetchType.EAGER)
 	private List<Product> product;
 
 

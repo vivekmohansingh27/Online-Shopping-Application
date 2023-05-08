@@ -154,24 +154,42 @@ public class ProductServiceImpl implements ProductService{
 	
 	
 	@Override
-	public Product deleteProductById(Integer id, String Key) throws ProductException {
-		
-		
-		  CurrentUserSession user = userRepo.findByUuid(Key);
-			
-			if(user==null) {
-				throw new UserException("Please Login first");
-			}
-			
-		
-		Optional<Product> prod = proRepo.findById(id);
-		if(prod.isPresent()==false) {
-			throw new ProductException("No Product is present in the List");
-		}
-		Product p = prod.get();
-		proRepo.deleteById(id);
-		return p;
+	public Product deleteProductById(Integer id, String key) throws ProductException, UserException {
+	    // Check if user is authenticated
+	    CurrentUserSession user = userRepo.findByUuid(key);
+	    if (user == null) {
+	        throw new UserException("Please log in first.");
+	    }
+	    
+	    // Check if product exists
+	    Optional<Product> optionalProduct = proRepo.findById(id);
+	    if (!optionalProduct.isPresent()) {
+	        throw new ProductException("Product not found.");
+	    }
+	    
+	    // Delete the product and return it
+	    Product product = optionalProduct.get();
+	    proRepo.deleteById(id);
+	    return product;
 	}
+//	public Product deleteProductById(Integer id, String Key) throws ProductException {
+//		
+//		
+//		  CurrentUserSession user = userRepo.findByUuid(Key);
+//			
+//			if(user==null) {
+//				throw new UserException("Please Login first");
+//			}
+//			
+//		
+//		Optional<Product> prod = proRepo.findById(id);
+//		if(prod.isPresent()==false) {
+//			throw new ProductException("No Product is present in the List");
+//		}
+//		Product p = prod.get();
+//		proRepo.deleteById(id);
+//		return p;
+//	}
 
 
 
