@@ -13,7 +13,7 @@ const navbar = () => {
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <div class="collapse navbar-collapse " id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" id="home" href="#">Home</a>
@@ -27,8 +27,7 @@ const navbar = () => {
           <li class="nav-item">
             <a class="nav-link" id="order" href="#">order</a>
           </li>
-          <li class="nav-item">
-          </li>
+          
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -45,7 +44,11 @@ const navbar = () => {
               <li>
                 <a class="dropdown-item" href="#">Something else here</a>
               </li>
+              
             </ul>
+          </li>
+          <li class="nav-item">
+            <button type="button" id="logout-btn" class="btn button-33">Log Out</button>
           </li>
         </ul>
       </div>
