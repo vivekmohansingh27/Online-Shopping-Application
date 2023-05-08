@@ -36,11 +36,12 @@ public class CartController {
 	
 	
 	@PostMapping("carts/addProduct")
-	public ResponseEntity<Cart> addProductToCart(@RequestParam("cartId") Integer cartId, 
-			                                     @RequestParam("productId") Integer productId
+	public ResponseEntity<Cart> addProductToCart(@RequestParam("cartId") String cartId, 
+			                                     @RequestParam("productId") String productId
 			                                     ) throws CartException {
-			                                     
-	     Cart cart=cartService.addProductToCart(cartId, productId);
+			  Integer cid = Integer.parseInt(cartId) ;
+			  Integer pid = Integer.parseInt(productId) ;
+	     Cart cart=cartService.addProductToCart(cid, pid);
 	     
 	     
 	     ResponseEntity<Cart> re=new ResponseEntity<>(cart , HttpStatus.CREATED);

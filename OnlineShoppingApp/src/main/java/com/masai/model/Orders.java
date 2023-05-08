@@ -41,7 +41,7 @@ public class Orders {
 	
 	
 	@ManyToOne
-	
+	@JsonIgnore
 	@JoinColumn(name = "CID")
 	private Customer customer;
 	
