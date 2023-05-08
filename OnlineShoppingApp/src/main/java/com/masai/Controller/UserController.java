@@ -33,7 +33,7 @@ public class UserController {
 
 		String result = service.logOutFromAccount(key);
 
-		return new ResponseEntity<String>(result, HttpStatus.OK);
+		return new ResponseEntity<String>(result, HttpStatus.NO_CONTENT);
 
 	}
 

@@ -22,7 +22,7 @@ function postReq() {
   })
     .then((response) => {
       console.log(response);
-      if (response.status >= 200 && response.status <= 299) {
+      if (response.status >= 200) {
         response.json().then((data) => {
           // Set a value in session storage
           console.log(data);
@@ -67,7 +67,7 @@ function getcustomer(){
   fetch(`http://localhost:8080/customerGet/${customer_details.userId}`)
   .then((response) => {
     console.log(response);
-    if (response.status >= 200 && response.status <= 299) {
+    if (response.status >= 200) {
       response.json().then((data) => {
         // Set a value in session storage
         console.log(data);
