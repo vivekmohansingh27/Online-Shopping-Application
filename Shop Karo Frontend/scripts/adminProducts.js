@@ -195,6 +195,11 @@ function deleteProduct(productId, sessionKey) {
     .catch((error) => console.log("error", error));
 }
 
+document.getElementById("viewProducts").onclick = () => {
+  console.log("vivek")
+  getProducts();
+};
+
 
 
 
